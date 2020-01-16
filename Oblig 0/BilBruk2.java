@@ -1,4 +1,4 @@
-public class BilBruk2{
+class BilBruk2{
 
   public static void main(String[] args){
 

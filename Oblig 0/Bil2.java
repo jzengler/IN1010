@@ -1,4 +1,4 @@
-public class Bil2 {
+class Bil2 {
 
   private String bilNummer;
 
