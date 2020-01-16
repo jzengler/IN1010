@@ -1,9 +1,9 @@
 class Bil3 {
 
-  //deklarering av instansvariabel
+  // deklarering av instansvariabel
   private String bilNummer;
 
-  //konstruktør
+  // konstruktør
   Bil3(String bilNummer){
     this.bilNummer = bilNummer;
   }
