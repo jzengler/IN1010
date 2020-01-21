@@ -14,12 +14,14 @@ public class Node{
 
   // Metoder
 
+  // returnerer nodens minnestørrelse
   public int minne(){
 
     return minneStoerrelse;
 
   }
 
+  // returnerer nodens prosessorantall
   public int prosessorer(){
 
     return prosessorAntall;

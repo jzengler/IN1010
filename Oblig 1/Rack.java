@@ -20,6 +20,7 @@ public class Rack{
 
   // Metoder
 
+  // returnerer true/false om noden ble lagt til iht plass i racket 
   public boolean leggTilNode(Node node){
 
     boolean nodeLagtTil;
@@ -40,6 +41,7 @@ public class Rack{
 
   }
 
+  // returnerer det totale antallet prosessorer i racket
   public int prosessorerIRack(){
 
     int antallProsessorer = 0;
@@ -54,6 +56,7 @@ public class Rack{
 
   }
 
+  // returnerer antallet noder i racket som oppfyller påkrevd minne
   public int noderMedNokMinne(int paakrevdMinne){
 
     int antallNoder = 0;

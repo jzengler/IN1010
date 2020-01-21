@@ -73,7 +73,7 @@ public class Regneklynge{
 
   }
 
-
+  // legger til node i rack, oppretter nytt rack hvis fullt
   public void leggTilNode(Node node){
 
       // finn siste rack og forsøk å legg til node
@@ -95,6 +95,7 @@ public class Regneklynge{
 
   }
 
+  // skriver ut det totale antallet prosessorer i regneklyngen
   public void antProsessorer(){
 
     // variabel til å holde det totale antallet prosessorer
@@ -110,6 +111,7 @@ public class Regneklynge{
     System.out.println("Antall prosessorer: " + totAntallProsessorer);
   }
 
+  // skriver ut antallet noder i regneklyngen med tilstrekkelig minne
   public void noderMedNokMinne(int paakrevdMinne){
 
     int antallNoder = 0;
@@ -124,6 +126,7 @@ public class Regneklynge{
 
   }
 
+  // skriver ut antallet rack i regneklyngen
   public void antRack(){
 
     System.out.println("Antall rack: " + rack.size() );

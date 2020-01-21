@@ -16,7 +16,7 @@ public class Hovedprogram{
       filnavn = args[1];
     }
 
-    // opprett regneklyngen abel med plass til 12 noder i hvert rack
+    // opprett regneklyngen
     Regneklynge abel = new Regneklynge(navn, filnavn);
 
 
