@@ -3,7 +3,7 @@ public class Hovedprogram{
   public static void main(String [] args){
 
 
-    String filnavn, navn;
+    String navn, filnavn;
 
     // quick and dirty for å kunne kjøre fra CLI med argumenter
     // tar argumentene navn og filnavn
