@@ -48,7 +48,7 @@ public class Dataklynge{
     System.out.println("\nMaks noder per rack: " + maksNoderPerRack + "\n");
 
     // løkke så lenge fil har en neste streng
-    while( fil.hasNext() ){
+    while( fil.hasNextLine() ){
 
       // leser ut antall noder, minne og prosessorer som skal opprettes
       // hver linje i tekstfil representerer like noder
