@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 public class Dataklynge{
 
   // Instansvariabler
-
   // arraylist til rack for enklere behandling av liste-elementer
   private ArrayList<Rack> rack = new ArrayList<Rack>();
   // navnet på klyngen
@@ -19,40 +18,43 @@ public class Dataklynge{
 
 
 
-  // konstruktør
-
+  // Konstruktør
   Dataklynge(String navn, String filnavn){
 
-
-    int noder, minne, prosessorer;
     this.navn = navn;
+    // midlertidig variabler for innhold fra fil
+    int noder, minne, prosessorer;
+    Scanner fil = null;
 
-
-
-    File klyngeOppsett = new File(filnavn);
-
-
+    // Les inn fil med klyngeoppsett
     try{
-    Scanner skanner = new Scanner(klyngeOppsett);
 
-    // les antall noder per rack fra fil, konverter til int
-    maksNoderPerRack = Integer.parseInt( skanner.next() );
+        fil = new Scanner( new File(filnavn) );
+    }
+    catch(FileNotFoundException e){
+          System.out.println(e.getMessage());
+          System.exit(1);
+    }
 
-    // opprett ett tomt rack, reduserer behov for feilhåndtering i leggTilNode
+    // les antall noder per rack fra fil, første linje i filen
+    //konverter streng til heltall
+    maksNoderPerRack = fil.nextInt();
+
+    // opprett ett tomt rack, reduserer behov for feilhåndtering i leggTilNode()
     rack.add( new Rack(maksNoderPerRack) );
 
-    // skriv ut klyngoppsett når det leses
+    // skriv ut klyngoppsett til terminal når det leses fra fil
     System.out.println("#### Oppretter dataklynge fra fil ####");
     System.out.println("\nMaks noder per rack: " + maksNoderPerRack + "\n");
 
-    // løkke så lenge skanner har en neste streng
-    while( skanner.hasNext() ){
+    // løkke så lenge fil har en neste streng
+    while( fil.hasNext() ){
 
       // leser ut antall noder, minne og prosessorer som skal opprettes
-      // hver linje representerer like noder
-      noder = Integer.parseInt( skanner.next() );
-      minne = Integer.parseInt( skanner.next() );
-      prosessorer = Integer.parseInt( skanner.next() );
+      // hver linje i tekstfil representerer like noder
+      noder = fil.nextInt();
+      minne = fil.nextInt();
+      prosessorer = fil.nextInt();
 
       // opprett settet med noder
       for(int i = 0; i < noder; i++){
@@ -63,36 +65,28 @@ public class Dataklynge{
       System.out.println("noder: " + noder + ", minne: " + minne + ", prosessorer: " + prosessorer);
     }
 
-    }
-    catch(FileNotFoundException e){
-      System.out.println(e.getMessage());
-    }
-
+    // avsluttende utskrift når hele filen er lest og klyngen er opprettet
     System.out.println("\n#### Opprettet dataklynge " + navn + " ####\n");
-
-
   }
 
+
+
+  // Metoder
   // legger til node i rack, oppretter nytt rack hvis fullt
   public void leggTilNode(Node node){
 
-      // finn siste rack og forsøk å legg til node
+      // finn siste rack i listen
       Rack sisteRack = rack.get(rack.size() - 1);
-      // returnerer om noden ble lagt til
-      boolean nodeLagtTil = sisteRack.leggTilNode(node);
 
-      // hvis noden ikke blir lagt (nodeLagtTil == false), lag nytt rack
-      if(nodeLagtTil == false){
+      // sjekk om det er plass i racket, opprett rack hvis ikke
+      if( !sisteRack.ledigPlass() ){
 
-        // opprett nytt rack og legg til i listen over rack
-        // benytt maks antall noder fra dataklyngen
-        Rack nyttRack = new Rack(maksNoderPerRack);
-        rack.add( nyttRack );
-        nyttRack.leggTilNode(node);
-
+        sisteRack = new Rack(maksNoderPerRack);
+        rack.add(sisteRack);
       }
 
-
+      // legg til node
+      sisteRack.leggTilNode(node);
   }
 
   // skriver ut det totale antallet prosessorer i dataklyngen

@@ -4,6 +4,8 @@ public class Node{
   private int minneStoerrelse;
   private int prosessorAntall;
 
+
+
   // Konstruktør
   Node(int minneStoerrelse, int prosessorAntall){
 
@@ -12,8 +14,9 @@ public class Node{
 
   }
 
-  // Metoder
 
+
+  // MetoderS
   // returnerer nodens minnestørrelse
   public int minne(){
 

@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
+
+
 public class Rack{
 
-
   // Instansvariabler
-
   private ArrayList<Node> noder = new ArrayList<Node>();
   private int maksNoder;
 
 
-  // Konstruktør
 
+  // Konstruktør
   Rack(int maksNoder){
 
     this.maksNoder = maksNoder;
@@ -18,27 +18,23 @@ public class Rack{
     }
 
 
+
   // Metoder
+  // legger til node i rack
+  public void leggTilNode(Node node){
 
-  // returnerer true/false om noden ble lagt til iht plass i racket 
-  public boolean leggTilNode(Node node){
-
-    boolean nodeLagtTil;
-
-    // legg til noden hvis plass i racket
-    if (noder.size() < maksNoder){
       noder.add(node);
+  }
 
-      // returner true etter noden er lagt til
-      nodeLagtTil = true;
+  // returnerer true/false om det er plass i racket
+  public boolean ledigPlass(){
+
+    if( noder.size() < maksNoder){
+      return true;
     }
     else{
-      // hvis racket er fullt returner false
-      nodeLagtTil = false;
+      return false;
     }
-
-    return nodeLagtTil;
-
   }
 
   // returnerer det totale antallet prosessorer i racket
