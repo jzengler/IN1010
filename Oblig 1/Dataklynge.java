@@ -65,6 +65,9 @@ public class Dataklynge{
       System.out.println("noder: " + noder + ", minne: " + minne + ", prosessorer: " + prosessorer);
     }
 
+    // lukk fil
+    fil.close();
+
     // avsluttende utskrift når hele filen er lest og klyngen er opprettet
     System.out.println("\n#### Opprettet dataklynge " + navn + " ####\n");
   }
