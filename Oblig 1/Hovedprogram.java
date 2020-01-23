@@ -5,19 +5,24 @@ public class Hovedprogram{
 
     String filnavn, navn;
 
-    // bruk standard klynge hvis ikke spesifisert som argument
-    if ( args.length == 0 ){
+    // quick and dirty for å kunne kjøre fra CLI med argumenter
+    // tar argumentene navn og filnavn
+    if ( args.length < 2 ){
+
+      System.out.println("Forventet to argumenter: navn filnavn");
+      System.out.println("Bruker 'Abel' og 'dataklynge.txt'\n");
+      filnavn = "dataklynge.txt";
       navn = "Abel";
-      filnavn = "regneklynge.txt";
 
     }
     else{
-      navn = args[0];
-      filnavn = args[1];
+
+      filnavn = args[0];
+      navn = args[1];
     }
 
-    // opprett regneklyngen
-    Regneklynge abel = new Regneklynge(navn, filnavn);
+    // opprett dataklyngen
+    Dataklynge abel = new Dataklynge(navn, filnavn);
 
 
     // Kall på utskriftsmetoder

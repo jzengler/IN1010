@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 
 
-public class Regneklynge{
+public class Dataklynge{
 
   // Instansvariabler
 
@@ -21,7 +21,7 @@ public class Regneklynge{
 
   // konstruktør
 
-  Regneklynge(String navn, String filnavn){
+  Dataklynge(String navn, String filnavn){
 
 
     int noder, minne, prosessorer;
@@ -42,7 +42,7 @@ public class Regneklynge{
     rack.add( new Rack(maksNoderPerRack) );
 
     // skriv ut klyngoppsett når det leses
-    System.out.println("#### Oppretter regneklynge fra fil ####");
+    System.out.println("#### Oppretter dataklynge fra fil ####");
     System.out.println("\nMaks noder per rack: " + maksNoderPerRack + "\n");
 
     // løkke så lenge skanner har en neste streng
@@ -68,7 +68,7 @@ public class Regneklynge{
       System.out.println(e.getMessage());
     }
 
-    System.out.println("\n#### Opprettet regneklynge " + navn + " ####\n");
+    System.out.println("\n#### Opprettet dataklynge " + navn + " ####\n");
 
 
   }
@@ -85,7 +85,7 @@ public class Regneklynge{
       if(nodeLagtTil == false){
 
         // opprett nytt rack og legg til i listen over rack
-        // benytt maks antall noder fra regneklyngen
+        // benytt maks antall noder fra dataklyngen
         Rack nyttRack = new Rack(maksNoderPerRack);
         rack.add( nyttRack );
         nyttRack.leggTilNode(node);
@@ -95,13 +95,13 @@ public class Regneklynge{
 
   }
 
-  // skriver ut det totale antallet prosessorer i regneklyngen
+  // skriver ut det totale antallet prosessorer i dataklyngen
   public void antProsessorer(){
 
     // variabel til å holde det totale antallet prosessorer
     int totAntallProsessorer = 0;
 
-    // loop gjennom alle rack i regneklyngen
+    // loop gjennom alle rack i dataklyngen
     for(Rack r : rack){
 
       totAntallProsessorer += r.prosessorerIRack();
@@ -111,7 +111,7 @@ public class Regneklynge{
     System.out.println("Antall prosessorer: " + totAntallProsessorer);
   }
 
-  // skriver ut antallet noder i regneklyngen med tilstrekkelig minne
+  // skriver ut antallet noder i dataklyngen med tilstrekkelig minne
   public void noderMedNokMinne(int paakrevdMinne){
 
     int antallNoder = 0;
@@ -126,7 +126,7 @@ public class Regneklynge{
 
   }
 
-  // skriver ut antallet rack i regneklyngen
+  // skriver ut antallet rack i dataklyngen
   public void antRack(){
 
     System.out.println("Antall rack: " + rack.size() );
