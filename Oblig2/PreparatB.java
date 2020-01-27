@@ -4,7 +4,7 @@ public class PreparatB extends Legemiddel{
 
   //Instansvariabler
   private int vanedannendeStyrke;
-
+  public final String PREPARAT_KLASSE = "Klasse B preparat";
 
 
   //Konstruktør

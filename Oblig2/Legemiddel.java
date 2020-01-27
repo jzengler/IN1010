@@ -2,8 +2,13 @@ abstract class Legemiddel{
 
 
 
+  //Klassevariabler
+  protected static int antall = 0;
+
+
+
   //Instansvariabler
-  protected static int id = -1;
+  protected int id = 0;
   protected String navn;
   protected double pris;
   protected double virkestoff;
@@ -12,7 +17,7 @@ abstract class Legemiddel{
 
   //Konstruktør
   protected void Legemiddel(String navn, double pris, double virkestoff){
-    id ++;
+    id = antall++;
     this.navn = navn;
     this.pris = pris;
     this.virkestoff = virkestoff;

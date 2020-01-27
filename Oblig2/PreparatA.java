@@ -4,6 +4,7 @@ public class PreparatA extends Legemiddel{
 
   //Instansvariabler
   private int narkotiskStyrke;
+  public final String PREPARAT_KLASSE = "Klasse A preparat";
 
 
   //Konstruktør
