@@ -5,7 +5,7 @@ public class Hovedprogram{
 
     String navn, filnavn;
 
-    // quick and dirty for å kunne kjøre fra CLI med argumenter
+    // quick and dirty for aa kunne koe�re fra CLI med argumenter
     // tar argumentene navn og filnavn
     if ( args.length < 2 ){
 
@@ -25,7 +25,7 @@ public class Hovedprogram{
     Dataklynge abel = new Dataklynge(navn, filnavn);
 
 
-    // Kall på utskriftsmetoder
+    // Kall paa utskriftsmetoder
     System.out.println();
     abel.noderMedNokMinne(32);
     abel.noderMedNokMinne(64);

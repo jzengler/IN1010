@@ -1,6 +1,6 @@
-// Importer ArrayList for enklere håndtering av array endringer
 import java.util.ArrayList;
- // Importer nødvendige klasser for filhåndtering
+//Importer ArrayList for enklere haandtering av array endringer
+ // Importer noedvendige klasser for filhåndtering
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,13 +12,13 @@ public class Dataklynge{
   // Instansvariabler
   // arraylist til rack for enklere behandling av liste-elementer
   private ArrayList<Rack> rack = new ArrayList<Rack>();
-  // navnet på klyngen
+  // navnet paa klyngen
   private String navn;
   private int maksNoderPerRack;
 
 
 
-  // Konstruktør
+  // Konstruktoer
   Dataklynge(String navn, String filnavn){
 
     this.navn = navn;
@@ -36,18 +36,18 @@ public class Dataklynge{
           System.exit(1);
     }
 
-    // les antall noder per rack fra fil, første linje i filen
+    // les antall noder per rack fra fil, foerste linje i filen
     //konverter streng til heltall
     maksNoderPerRack = fil.nextInt();
 
-    // opprett ett tomt rack, reduserer behov for feilhåndtering i leggTilNode()
+    // opprett ett tomt rack, reduserer behov for feilhaandtering i leggTilNode()
     rack.add( new Rack(maksNoderPerRack) );
 
-    // skriv ut klyngoppsett til terminal når det leses fra fil
+    // skriv ut klyngoppsett til terminal naar det leses fra fil
     System.out.println("#### Oppretter dataklynge fra fil ####");
     System.out.println("\nMaks noder per rack: " + maksNoderPerRack + "\n");
 
-    // løkke så lenge fil har en neste streng
+    // loekke saa lenge fil har en neste linje
     while( fil.hasNextLine() ){
 
       // leser ut antall noder, minne og prosessorer som skal opprettes
@@ -68,8 +68,8 @@ public class Dataklynge{
     // lukk fil
     fil.close();
 
-    // avsluttende utskrift når hele filen er lest og klyngen er opprettet
-    System.out.println("\n#### Opprettet dataklynge " + navn + " ####\n");
+    // avsluttende utskrift naar hele filen er lest og klyngen er opprettet
+    System.out.println("\n#### Opprettet dataklynge " + this.navn + " ####\n");
   }
 
 
@@ -95,7 +95,7 @@ public class Dataklynge{
   // skriver ut det totale antallet prosessorer i dataklyngen
   public void antProsessorer(){
 
-    // variabel til å holde det totale antallet prosessorer
+    // variabel til aa holde det totale antallet prosessorer
     int totAntallProsessorer = 0;
 
     // loop gjennom alle rack i dataklyngen

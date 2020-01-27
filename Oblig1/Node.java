@@ -6,7 +6,7 @@ public class Node{
 
 
 
-  // Konstruktør
+  // Konstruktoer
   Node(int minneStoerrelse, int prosessorAntall){
 
     this.minneStoerrelse = minneStoerrelse;
@@ -16,8 +16,8 @@ public class Node{
 
 
 
-  // MetoderS
-  // returnerer nodens minnestørrelse
+  // Metoder
+  // returnerer nodens minnestoerrelse
   public int minne(){
 
     return minneStoerrelse;

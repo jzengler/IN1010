@@ -10,7 +10,7 @@ public class Rack{
 
 
 
-  // Konstruktør
+  // Konstruktoer
   Rack(int maksNoder){
 
     this.maksNoder = maksNoder;
@@ -52,7 +52,7 @@ public class Rack{
 
   }
 
-  // returnerer antallet noder i racket som oppfyller påkrevd minne
+  // returnerer antallet noder i racket som oppfyller paakrevd minne
   public int noderMedNokMinne(int paakrevdMinne){
 
     int antallNoder = 0;
