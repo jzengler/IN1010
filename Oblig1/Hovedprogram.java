@@ -5,7 +5,7 @@ public class Hovedprogram{
 
     String navn, filnavn;
 
-    // quick and dirty for aa kunne koe¸re fra CLI med argumenter
+    // quick and dirty for aa kunne koeï¿½re fra CLI med argumenter
     // tar argumentene navn og filnavn
     if ( args.length < 2 ){
 

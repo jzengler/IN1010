@@ -8,6 +8,7 @@ public class PreparatC extends Legemiddel{
 
   //Konstruktør
   PreparatC(String navn, double pris, double virkestoff){
-    super.Legemiddel(navn, pris, virkestoff);
+    //kall konstruktøren til superklassen Legemiddel
+    super(navn, pris, virkestoff);
   }
 }

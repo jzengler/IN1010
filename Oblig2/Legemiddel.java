@@ -16,8 +16,9 @@ abstract class Legemiddel{
 
 
   //Konstruktør
-  protected void Legemiddel(String navn, double pris, double virkestoff){
-    id = antall++;
+  protected Legemiddel(String navn, double pris, double virkestoff){
+    //inkrementer antall etter id er tilordnet verdien
+    id = antall ++;
     this.navn = navn;
     this.pris = pris;
     this.virkestoff = virkestoff;

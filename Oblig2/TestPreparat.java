@@ -9,9 +9,11 @@ public class TestPreparat{
 
     //Skriv ut objektene prepA, prepB, prepC
     System.out.println("Skriver ut preparatene med tilpasset toString-metode\n"
+                    + "######################################################\n"
                     + "#  Preparat: <streng navn> <flyttall virkemiddel>mg  #\n"
                     + "#  ID: <heltall id> , Pris: <flyttall pris>kr        #\n"
-                    + "#  [narkotisk/vanedannende styrke: <heltall>]        #\n\n");
+                    + "#  [narkotisk/vanedannende styrke: <heltall>]        #\n"
+                    + "######################################################\n");
     System.out.println(prepA + "\n");
     System.out.println(prepB + "\n");
     System.out.println(prepC + "\n");
