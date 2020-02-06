@@ -3,15 +3,21 @@ class Blaa extends Resept{
 
 
   //Instansvariabler
-  private final String RESEPT_FARGE = "Blaa";
-  private String type;
+  protected final String RESEPT_FARGE = "BLAA RESEPT";
 
 
   //Konstruktør
-  Blaa(){
-    super();
+  Blaa(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit){
+    super(legemiddel, utskrivendeLege, pasientId, reit);
   }
 
 
   //Metoder
+  public String farge(){
+    return RESEPT_FARGE;
+  }
+
+  public double prisAaBetale(){
+    return hentLegemiddel().pris * 0.25;
+  }
 }

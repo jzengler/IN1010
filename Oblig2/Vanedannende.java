@@ -1,4 +1,4 @@
-public class PreparatB extends Legemiddel{
+public class Vanedannende extends Legemiddel{
 
 
 
@@ -8,7 +8,7 @@ public class PreparatB extends Legemiddel{
 
 
   //Konstruktør
-  PreparatB(String navn, double pris, double virkestoff, int styrke){
+  Vanedannende(String navn, double pris, double virkestoff, int styrke){
     //kall konstruktøren til superklassen Legemiddel
     super(navn, pris, virkestoff);
     vanedannendeStyrke = styrke;
@@ -20,7 +20,7 @@ public class PreparatB extends Legemiddel{
   @Override
   public String toString(){
 
-    return (super.toString() + "\nVanedannende styrke: " + vanedannendeStyrke);
+    return (super.toString() + "\nVanedannende styrke: " + hentVanedannendeStyrke());
   }
 
   public int hentVanedannendeStyrke(){

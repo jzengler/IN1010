@@ -26,6 +26,15 @@ abstract class Resept{
 
 
   //Metoder
+  public String toString(){
+    return (farge() +
+            "\nLege: " + hentLege() +
+            "\nPasient: " + hentPasientId() +
+            "\nID: "+ hentId() + " , Pris aa betale: " + prisAaBetale() + "kr" +
+            "\nreit: " + hentReit() +
+            "\n" + hentLegemiddel());
+  }
+
   protected int hentId(){
     return id;
   }

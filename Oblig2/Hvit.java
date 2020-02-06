@@ -3,19 +3,22 @@ class Hvit extends Resept{
 
 
   //Instansvariabler
-  private final String RESEPT_FARGE = "Hvit";
-  private String reseptType;
+  protected final String RESEPT_FARGE = "HVIT RESEPT";
 
 
   //Konstruktør
-  Hvit(){
-    super();
+  Hvit(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId, int reit){
+    super(legemiddel, utskrivendeLege, pasientId, reit);
 
   }
 
 
   //Metoder
   public String farge(){
-    return farge;
+    return RESEPT_FARGE;
+  }
+
+  public double prisAaBetale(){
+    return hentLegemiddel().pris;
   }
 }

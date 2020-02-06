@@ -28,8 +28,9 @@ abstract class Legemiddel{
 
   //Metoder
   public String toString(){
-    return ("Preparat: " + navn + " " + virkestoff + "mg\n"
-            + "ID: " + id + " , Pris: " + pris + "kr");
+    return ("LEGEMIDDEL\n" +
+            "Preparat: " + hentNavn() + " " + hentVirkestoff() + "mg\n"
+            + "ID: " + hentID() + " , Pris: " + hentPris() + "kr");
   }
 
   protected int hentID(){
@@ -48,7 +49,10 @@ abstract class Legemiddel{
     return virkestoff;
   }
 
-  protected void settNyPris(){
+  protected void settNyPris(double nyPris){
+
+    pris = nyPris;
+
     return;
   }
 }

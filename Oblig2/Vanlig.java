@@ -1,4 +1,4 @@
-public class PreparatC extends Legemiddel{
+public class Vanlig extends Legemiddel{
 
 
 
@@ -7,7 +7,7 @@ public class PreparatC extends Legemiddel{
 
 
   //Konstruktør
-  PreparatC(String navn, double pris, double virkestoff){
+  Vanlig(String navn, double pris, double virkestoff){
     //kall konstruktøren til superklassen Legemiddel
     super(navn, pris, virkestoff);
   }
