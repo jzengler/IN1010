@@ -11,8 +11,8 @@ public class TestLegemiddel{
     System.out.println("Skriver ut preparatene med tilpasset toString-metode\n"
                     + "######################################################\n"
                     + "#  LEGEMIDDEL                                        #\n"
-                    + "#  Preparat: <streng navn> <flyttall virkemiddel>mg  #\n"
                     + "#  ID: <heltall id> , Pris: <flyttall pris>kr        #\n"
+                    + "#  Preparat: <streng navn> <flyttall virkemiddel>mg  #\n"
                     + "#  [narkotisk/vanedannende styrke: <heltall>]        #\n"
                     + "######################################################\n");
 
