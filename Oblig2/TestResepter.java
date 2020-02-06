@@ -10,7 +10,7 @@ public class TestResepter{
   Vanlig nuvaRing = new Vanlig("NuvaRing", 420.0, 2.0);
 
   //oppretter et objekt lege som placeholder til resept
-  Lege lege = new Lege();
+  Lege lege = new Lege("test");
 
   //oppretter hvit og blaa resept
   Hvit hvit = new Hvit(penicillin, lege, 1111, 1);
