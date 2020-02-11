@@ -18,7 +18,7 @@ class Integrasjonstest{
     Hvit hvit = new Hvit(norm1, lege, 1111, 1);
     Blaa blaa = new Blaa(nark, spes, 2222, 2);
     PResept pResept = new PResept(norm2, lege, 3333);
-    MilResept milResept = new MilResept(vane, spes, 4444, 4);
+    MilResept milResept = new MilResept(vane, lege, 4444, 4);
 
 
     //Skriv ut hvit resept, norm1 legemiddel, lege
