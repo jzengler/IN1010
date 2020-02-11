@@ -16,7 +16,6 @@ class PResept extends Hvit{
     return RESEPT_FARGE + " - P";
   }
 
-  @Override
   public double prisAaBetale(){
     double pris = hentLegemiddel().pris;
 
