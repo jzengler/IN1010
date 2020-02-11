@@ -1,7 +1,7 @@
 class MilResept extends Hvit{
 
   //Klassevariabler
-  private final static double PRIS = 0;
+  private final static int PRIS = 0;
 
   //Instansvariabler
 

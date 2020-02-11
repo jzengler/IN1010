@@ -3,7 +3,7 @@ class Hvit extends Resept{
 
 
   //Instansvariabler
-  protected final String RESEPT_FARGE = "HVIT RESEPT";
+  protected final String RESEPT_FARGE = "HVIT";
 
 
   //Konstruktør

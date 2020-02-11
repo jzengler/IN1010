@@ -24,7 +24,7 @@ public class TestResepter{
   PResept pResept = new PResept(nuvaRing, lege, 3333);
   MilResept milResept = new MilResept(morfin, lege, 4444, 4);
 
-  // skriver ut ved bruk av toString()
+  // skriver ut ved bruk av tilpasset toString()
   System.out.println(pResept + "\n");
   System.out.println(milResept + "\n");
 

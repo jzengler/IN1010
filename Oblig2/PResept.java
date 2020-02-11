@@ -2,7 +2,7 @@ class PResept extends Hvit{
 
 
   //Instansvariabler
-  private final int RABATT = 108;
+  private final static int RABATT = 108;
 
   //Konstruktør
   PResept(Legemiddel legemiddel, Lege utskrivendeLege, int pasientId){

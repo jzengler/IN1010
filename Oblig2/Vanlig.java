@@ -3,7 +3,6 @@ public class Vanlig extends Legemiddel{
 
 
   //Instansvariabler
-  public final String PREPARAT_KLASSE = "Klasse C preparat";
 
 
   //Konstruktør
