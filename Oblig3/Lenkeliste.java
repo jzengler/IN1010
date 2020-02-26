@@ -13,13 +13,16 @@ class Lenkeliste<T> implements Liste<T>{
 
 //Instansvariabler
 private Node start = null;
-public static int antallNoder = 0;
+private int antallNoder = 0;
 
 //Konstruktør
 
 
 
 //metoder
+public int antNod(){
+  return antallNoder;
+}
 
 //done
 public int stoerrelse(){
@@ -36,7 +39,7 @@ public int stoerrelse(){
 
 //done
 public void leggTil(int pos, T x){
-  if (pos < 0 || pos >= antallNoder)
+  if (pos < 0 || pos > antallNoder)
     throw new UgyldigListeIndeks(pos);
 
   //Oppretter ny node
@@ -99,7 +102,7 @@ public void leggTil(T x){
 
 //done
 public void sett(int pos, T x){
-  if (pos < 0 || pos>=antallNoder)
+  if (pos < 0 || pos>=antallNoder || start == null)
     throw new UgyldigListeIndeks(pos);
 
   Node p = start;
@@ -114,7 +117,7 @@ public void sett(int pos, T x){
 
 //done
 public T hent(int pos){
-  if (pos < 0 || pos >= antallNoder)
+  if (pos < 0 || pos >= antallNoder || start == null)
     throw new UgyldigListeIndeks(pos);
 
   Node p = start;
@@ -128,7 +131,7 @@ public T hent(int pos){
 
 //done
 public T fjern(int pos){
-  if (pos < 0 || pos >= antallNoder)
+  if (pos < 0 || pos >= antallNoder || start == null)
     throw new UgyldigListeIndeks(pos);
 
   Node p = start;
@@ -159,9 +162,8 @@ public T fjern(int pos){
 
 //done
 public T fjern(){
-  if (antallNoder == 0){
+  if (start == null)
     throw new UgyldigListeIndeks(antallNoder);
-  }
 
 
   //mellomlagrer første node

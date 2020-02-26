@@ -4,7 +4,11 @@ class scratch{
 
     System.out.println("Test tom liste");
     Liste<String> liste = new Lenkeliste<String>();
+
+    liste.leggTil(0, "test");
     liste.fjern();
+    liste.leggTil(0, "test2");
+    System.out.println(liste.stoerrelse());
 /*
     liste.leggTil("Index 0");
     liste.leggTil("Index 1");
