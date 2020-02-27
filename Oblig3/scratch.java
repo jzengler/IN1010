@@ -2,32 +2,35 @@ class scratch{
 
   public static void main(String[] args) {
 
-    System.out.println("Test tom liste");
-    Liste<String> liste = new Lenkeliste<String>();
+    System.out.println("debug/tester");
 
-    liste.leggTil(0, "test");
-    liste.fjern();
-    liste.leggTil(0, "test2");
-    System.out.println(liste.stoerrelse());
-/*
-    liste.leggTil("Index 0");
-    liste.leggTil("Index 1");
-    liste.leggTil("Index 4");
-    liste.leggTil(2, "Index 2");
-    liste.leggTil(3, "Index 3");
+    Stabel<String> liste = new Stabel<String>();
+
+    liste.leggTil("Element 0");
+    liste.leggTil("Element 1");
+    liste.leggTil("Element 2");
+    liste.leggTil("Element 3");
+    liste.leggTil("Element 4");
+    liste.sett(0, "nyVerdi 0");
+    liste.sett(2, "nyVerdi 2");
+
+    stackTrace(liste);
+    System.out.println(liste.fjern(4));
+    liste.leggTil("NyttElement");
+    stackTrace(liste);
 
 
-    System.out.println(liste.fjern());
-    System.out.println(liste.stoerrelse());
-    System.out.println(liste.fjern());
-    System.out.println(liste.stoerrelse());
-    System.out.println(liste.fjern());
-    System.out.println(liste.stoerrelse());
-    System.out.println(liste.fjern(1));
-    System.out.println(liste.stoerrelse());
-    System.out.println(liste.fjern(0));
 
-*/
 
+  }
+
+
+
+  public static void stackTrace(Stabel<String> liste){
+  System.out.println("\nPrinting stack");
+  for(int i = 0; i < liste.stoerrelse(); i++){
+    System.out.println(liste.hent(i));
+  }
+  System.out.println("End of stack\n");
   }
 }
