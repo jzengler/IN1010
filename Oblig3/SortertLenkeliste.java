@@ -9,19 +9,25 @@ class SortertLenkeliste<T extends Comparable<T>> extends Lenkeliste<T>{
       super.leggTil(x);
     }
     else{
+
       // opprett iterasjonsvariabler
       Node p = start;
       int i = 0;
+
       //så lenge p eksisterer
       while(p != null){
+
         //sammenlign node med indeks i mot ny node
         if(super.hent(i).compareTo(x) <= 0){
+
           //inkrementer ny nodes indeks hvis mindre
           i++;
         }
+
         // gå til neste node i lenken
         p = p.neste;
       }
+
       // legg til ny node i indeks funnet ved sammenligning
       super.leggTil(i, x);
     }
@@ -49,6 +55,4 @@ class SortertLenkeliste<T extends Comparable<T>> extends Lenkeliste<T>{
   public void leggTil(int pos, T x){
     throw new UnsupportedOperationException("Kan ikke legge til objektet i sortert liste");
   }
-
-
 }
