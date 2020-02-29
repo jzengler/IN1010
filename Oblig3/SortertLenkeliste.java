@@ -4,24 +4,32 @@ class SortertLenkeliste<T extends Comparable<T>> extends Lenkeliste<T>{
   @Override
   public void leggTil(T x){
 
-    int n = super.stoerrelse();
 
-    //Hvis lenken ikke inneholder noen noder
-    if(n == 0 ){
+
+
+
+    // legg til først hvis ingen noder finnes fra før
+    if(super.stoerrelse() == 0){
       super.leggTil(x);
     }
-    //hvis det finnes noder, sjekk alle noder helt til treff på større verdi enn x
     else{
-      //fikk ikke denne til med while
-      // unødvendig gjennomgang av hele lenken
-      int indeks = 0;
-      for ( int i = 0; i < n; i++){
-        if( super.hent(i).compareTo(x) <= 0){
-          indeks++;
+      // opprett iterasjonsvariabler
+      Node p = start;
+      int i = 0;
+      //så lenge p eksisterer
+      while(p != null){
+        //sammenlign node med indeks i mot ny node
+        if(super.hent(i).compareTo(x) <= 0){
+          //inkrementer ny nodes indeks hvis mindre
+          i++;
         }
+        // gå til neste node i lenken
+        p = p.neste;
       }
-      super.leggTil(indeks, x);
+      // legg til ny node i indeks funnet ved sammenligning
+      super.leggTil(i, x);
     }
+
     return;
   }
 

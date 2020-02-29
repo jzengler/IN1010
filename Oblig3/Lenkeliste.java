@@ -12,7 +12,7 @@ class Lenkeliste<T> implements Liste<T>{
 
 
   //Instansvariabler
-  private Node start = null;
+  protected Node start = null;
   private int antallNoder = 0;
 
   //Konstruktør
