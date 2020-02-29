@@ -4,10 +4,6 @@ class SortertLenkeliste<T extends Comparable<T>> extends Lenkeliste<T>{
   @Override
   public void leggTil(T x){
 
-
-
-
-
     // legg til først hvis ingen noder finnes fra før
     if(super.stoerrelse() == 0){
       super.leggTil(x);
