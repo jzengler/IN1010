@@ -45,7 +45,7 @@ abstract class Resept{
     return utskrivendeLege;
   }
   protected int hentPasientId(){
-    return pasient;
+    return pasient.hentId();
   }
   protected int hentReit(){
     return reit;

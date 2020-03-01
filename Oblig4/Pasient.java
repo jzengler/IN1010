@@ -28,12 +28,20 @@ class Pasient{
     resepter.leggTil(r);
   }
 
-  public void hentResepter(){
+  public Array hentResepter(){
     int n = resepter.stoerrelse();
+    //Array liste = new Array(n);
 
-    for(int i = 0; i < n; i++){
-    resepter.hent();
+
+    //for(int i = 0; i < n; i++){
+    //liste[i] = resepter.hent(i);
     }
+
+    return liste;
+  }
+
+  public int hentId(){
+    return id;
   }
 
 }

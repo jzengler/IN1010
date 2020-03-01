@@ -1,4 +1,4 @@
-public class Vanlig extends Legemiddel{
+class Vanlig extends Legemiddel{
 
 
 

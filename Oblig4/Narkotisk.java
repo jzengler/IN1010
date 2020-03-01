@@ -1,4 +1,4 @@
-public class Narkotisk extends Legemiddel{
+class Narkotisk extends Legemiddel{
 
 
 

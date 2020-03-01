@@ -1,5 +1,6 @@
 class Lenkeliste<T> implements Liste<T>{
 
+  //underklasse for støtteobjekt
   class Node{
 
     Node neste = null;
@@ -9,6 +10,34 @@ class Lenkeliste<T> implements Liste<T>{
       data = x;
     }
   }
+
+  //underklasse for iterator
+  class LenkelisteIterator implements Iterator<T>{
+    //Hvordan skal dette implementeres egentlig?
+
+
+    //Instansvariabler
+    Node p = start;
+
+    protected boolean hasNext(){
+      if(p.neste != null){
+        p = p.neste;
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    protected T next(){
+      return p.data;
+    }
+
+
+    protected void remove(){}
+
+  }
+
 
 
   //Instansvariabler
@@ -185,4 +214,12 @@ class Lenkeliste<T> implements Liste<T>{
     // returnerer den første noden
     return p.data;
   }
+
+  //iterator objekt
+  public Iterator iterator(){
+    LenkelisteIterator iter = new LenkelisteIterator();
+    return iter;
+  }
+
+
 }

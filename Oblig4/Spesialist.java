@@ -1,4 +1,4 @@
-public class Spesialist extends Lege implements Godkjenningsfritak{
+class Spesialist extends Lege implements Godkjenningsfritak{
 
 
 
