@@ -1,6 +1,8 @@
+import java.util.Iterator;
+
 class Lenkeliste<T> implements Liste<T>{
 
-  //underklasse for støtteobjekt
+  //indre klasse for støtteobjekt
   class Node{
 
     Node neste = null;
@@ -11,17 +13,17 @@ class Lenkeliste<T> implements Liste<T>{
     }
   }
 
-  //underklasse for iterator
+  //indre klasse for iterator
   class LenkelisteIterator implements Iterator<T>{
     //Hvordan skal dette implementeres egentlig?
 
 
     //Instansvariabler
-    Node p = start;
+    protected Node p = start;
 
-    protected boolean hasNext(){
-      if(p.neste != null){
-        p = p.neste;
+    //sjekk om element eksisterer
+    public boolean hasNext(){
+      if( p != null ){
         return true;
       }
       else{
@@ -29,12 +31,20 @@ class Lenkeliste<T> implements Liste<T>{
       }
     }
 
-    protected T next(){
-      return p.data;
+    //returner neste element
+    public T next(){
+
+      Node temp = p;
+
+      //flytter peker til neste node slik at hasNext() kan sjekke
+      p = p.neste;
+
+      //returner data fra elementet vi startet med i metoden
+      return temp.data;
     }
 
 
-    protected void remove(){}
+    public void remove(){}
 
   }
 
@@ -51,17 +61,6 @@ class Lenkeliste<T> implements Liste<T>{
   //returnerer antallet noder i lenken
   public int stoerrelse(){
     return antallNoder;
-
-    /*alternativ loop løsning
-    Node p = start;
-    int n = 0;
-
-    while( p != null){
-      n++;
-      p = p.neste;
-    }
-    return n;
-    */
   }
 
   //legger til node i gitt posisjon
@@ -216,10 +215,10 @@ class Lenkeliste<T> implements Liste<T>{
   }
 
   //iterator objekt
-  public Iterator iterator(){
-    LenkelisteIterator iter = new LenkelisteIterator();
-    return iter;
-  }
+  public Iterator<T> iterator(){
+     LenkelisteIterator iterator = new LenkelisteIterator();
+     return iterator;
+   }
 
 
 }

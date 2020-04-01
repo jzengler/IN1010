@@ -26,13 +26,16 @@ abstract class Resept{
 
 
   //Metoder
+
+  //\u00E5 = aa
   public String toString(){
-    return (farge() +
-            "\nID: "+ hentId() + " , Pris aa betale: " + prisAaBetale() + "kr" +
-            "\nLege: " + hentLege() +
+    return (farge() + " RESEPT" +
+            "\nID: "+ hentId() +
+            "\nPris \u00E5 betale: " + String.format("%.2f", prisAaBetale()) + "kr" +
+            "\nLege: " + hentLege().hentNavn() +
             "\nPasient: " + hentPasientId() +
             "\nreit: " + hentReit() +
-            "\n" + hentLegemiddel());
+            "\nLegemiddel: " + hentLegemiddel().hentNavn());
   }
 
   protected int hentId(){

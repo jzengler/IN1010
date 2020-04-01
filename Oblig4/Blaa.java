@@ -3,7 +3,7 @@ class Blaa extends Resept{
 
 
   //Instansvariabler
-  protected final String RESEPT_FARGE = "BLAA";
+  protected final String RESEPT_FARGE = "BL\u00C5";
 
 
   //Konstruktør

@@ -1,10 +1,8 @@
-class Pasient{
-
+class Pasient {
 
   //Klassevariabler
+  //brukes til å sette pasientId
   private static int antall = 0;
-
-
 
   //Instansvariabler
   private String navn = null;
@@ -12,36 +10,68 @@ class Pasient{
   private int id = 0;
   private Stabel<Resept> resepter = new Stabel<Resept>();
 
-
-
   //Konstruktør
   Pasient(String navn, String fnummer){
     this.navn = navn;
     this.fnummer = fnummer;
     id = antall++;
-
   }
-
 
   //Metoder
-  public void leggTilResept(Resept r){
-    resepter.leggTil(r);
+
+  @Override
+  public String toString(){
+    return ("PASIENT\n" +
+            "ID: " + hentId() + ", Navn: " + hentNavn() +
+            "\nFnr: " + hentFnummer() +
+            "\nAntall resepter: " + hentResepter().stoerrelse() );
   }
 
-  public Array hentResepter(){
-    int n = resepter.stoerrelse();
-    //Array liste = new Array(n);
+  public String hentObjektMedResept(){
 
+    String retur = this.toString() + "\n";
 
-    //for(int i = 0; i < n; i++){
-    //liste[i] = resepter.hent(i);
+    int i = 1;
+    for ( Resept r : resepter ) {
+       retur += ("\nResept " + i + "\n" + r + "\n");
+       i++;
     }
 
-    return liste;
+    return retur;
   }
 
+  //Legg til resept i pasientens Stabel
+  public void leggTilResept(Resept r){
+
+    // sjekk om reseptens pasientID er den samme som pasienten den legges til
+    // kan vurdere å kaste unntak her?
+    if( r.hentPasientId() != hentId()){
+      System.out.println("Kan ikke skrive ut resept " + r.hentId() + " på en annen pasient. Forventet pasientID " + hentId() + ", fant " + r.hentPasientId());
+    }
+    //hvis id er lik, legg til i stabel
+    else{
+      resepter.leggTil(r);
+    }
+  }
+
+  //loop gjennom alle respeter i pasientens Stabel
+  public Stabel<Resept> hentResepter(){
+
+    // returner reseptene
+    return resepter;
+  }
+
+  //returner pasientId
   public int hentId(){
     return id;
+  }
+
+  public String hentNavn(){
+    return navn;
+  }
+
+  public String hentFnummer(){
+    return fnummer;
   }
 
 }

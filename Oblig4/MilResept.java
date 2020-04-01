@@ -10,7 +10,6 @@ class MilResept extends Hvit{
     super(legemiddel, utskrivendeLege, pasient, reit);
   }
 
-
   //Metoder
   public String farge(){
     return RESEPT_FARGE + " - MIL" ;

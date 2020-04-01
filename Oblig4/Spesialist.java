@@ -1,9 +1,9 @@
-class Spesialist extends Lege implements Godkjenningsfritak{
+class Spesialist extends Lege {
 
 
 
   //Instansvariabler
-  private int kontrollID;
+  // private int kontrollID; - Flyttet til lege. Gir mer mening
 
 
   //Konstruktoer
@@ -15,10 +15,11 @@ class Spesialist extends Lege implements Godkjenningsfritak{
 
   //metoder
   public String toString(){
-    return super.toString() + ", kontroll ID: " + hentKontrollID();
+    return super.toString() + "\nKontroll ID: " + hentKontrollID();
   }
 
-  public int hentKontrollID(){
-    return kontrollID;
-  }
+  // hentKontrollID er flyttet til lege. Gir mer mening.
+  // public int hentKontrollID(){
+  //   return kontrollID;
+  // }
 }
