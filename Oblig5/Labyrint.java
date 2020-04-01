@@ -1,16 +1,16 @@
 class Labyrint{
 
   //Instansvariabler
-  // Y,X = kol, rad
+  // kolonner og rader
   private int kol;
   private int rad;
-  private String[][] ruter;
+  private int[][] ruter;
 
 
 
 
   //Konstruktør
-  Labyrint(int kol, int rad){
+  private Labyrint(int kol, int rad, int[] ruter){
     this.kol = kol;
     this.rad = rad;
     ruter = new int[kol][rad];
@@ -36,11 +36,29 @@ class Labyrint{
 
   }
 
-  public Labyrint lesFraFil(){
+  static public Labyrint lesFraFil(File fil)throws Exception{
 
-    // les fra fil
-    // kolonne rad
-    // labyrinten
+    Scanner scanner = new Scanner(fil);
+
+
+    //les antall rader og kolonner
+    rad = scanner.nextInt();
+    kol = scanner.nextInt();
+
+
+    //les labyrint-symbolene
+    while( scanner.hasNextLine() ){
+
+      String linje = scanner.nextLine();
+
+      // for(char l : linje.toCharArray() ){
+      //
+      //   if( l.compareTo("#") == 0 ){
+      //     new SortRute()
+      //   }
+
+      }
+    }
 
     //legg inn hvit/sort i array
 
