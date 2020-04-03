@@ -1,18 +1,16 @@
 class SortRute extends Rute{
 
   //Instansvariabler
-  private char tegn = "#";
+  private char tegn = '#';
 
   //konstruktør
-  SortRute(){
-    super(labyrint);
+  SortRute(int x, int y){
+    super(x, y);
   }
 
   //metoder
   public char tilTegn(){
     return tegn;
   }
-
-
 
 }
