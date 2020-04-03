@@ -64,7 +64,6 @@ abstract class Rute{
 
 
   protected void finnUtvei(){
-      System.out.println(naboer);
       gaa(this, "");
   }
 
