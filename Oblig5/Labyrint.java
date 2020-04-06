@@ -10,8 +10,14 @@ class Labyrint{
     // kolonner(x) og rader(y)
     private int kolonner;
     private int rader;
+
+    // "matrise" til å holde alle rutene
     private Rute[][] ruter;
+
+    // holder alle veier på koordinatform
     protected Liste<String> veier;
+
+    // holder alle veier som grafisk streng
     protected Liste<String> labyrinter;
 
 
@@ -38,25 +44,7 @@ class Labyrint{
 
 
     //Metoder
-
-    //returner labyrinten som streng
-    public String toString(){
-        String rutenett = "\n";
-
-        //legg til alle ruter i en streng. ny linje mellom hver rad.
-        for(int y = 0; y < rader; y++){
-            for(int x = 0; x < kolonner; x++){
-                rutenett += (ruter[x][y].tilTegn() + " ");
-            }
-            // newline før neste rad
-            rutenett += "\n";
-        }
-
-        // returner hele strengen
-        return rutenett;
-
-    }
-
+    // static factory for labyrint
     static Labyrint lesFraFil(File fil)throws FileNotFoundException{
 
         Scanner scanner = new Scanner(fil);
@@ -109,6 +97,29 @@ class Labyrint{
 
     }
 
+
+
+    //returner en representasjon av labyrinten som streng
+    public String toString(){
+        String rutenett = "\n";
+
+        //legg til alle ruter i en streng. ny linje mellom hver rad.
+        for(int y = 0; y < rader; y++){
+            for(int x = 0; x < kolonner; x++){
+                rutenett += (ruter[x][y].tilTegn() + " ");
+            }
+            // newline før neste rad
+            rutenett += "\n";
+        }
+
+        // returner hele strengen
+        return rutenett;
+
+    }
+
+
+
+    // hjelpemetode for å legge til naboer i rute
     private void finnNabo(Rute rute, int x, int y){
 
          // #+#
@@ -151,6 +162,9 @@ class Labyrint{
 
     }
 
+
+
+    // hjelpemetode for å legge til referanse til labyrint til alle rutene
     private void tilordneLabyrint(){
 
         // for hver rute registrer naboer
@@ -161,6 +175,9 @@ class Labyrint{
         }
     }
 
+
+
+    // metode for å starte søk etter utvei
     public Liste<String> finnUtveiFra(int x, int y){
 
         veier = new Lenkeliste<String>();
@@ -178,6 +195,9 @@ class Labyrint{
         return veier;
     }
 
+
+
+    // skriver ut korteste vei og antallet veier funnet.
     public void skrivUtKorteste(){
 
         String kortesteVei = veier.hent(0);
@@ -193,14 +213,20 @@ class Labyrint{
         }
 
         if(indeks >= 0){
-            System.out.println("\nKorteste vei: \n" + veier.hent(indeks) + "\n");
+
+            System.out.println("\nFant " + veier.stoerrelse() + " veier");
+
+            System.out.println("\nKorteste vei: \n" + veier.hent(indeks));
 
             String[] vei = veier.hent(indeks).split("-->");
-            System.out.println("Veien er " + vei.length + " ruter lang");
+            System.out.println("Veien bestaar av " + vei.length + " ruter");
+
         }
 
     }
 
+
+    // skriver ut alle veier på koordinatform
     public void skrivUtVeierDetaljert(){
         if (veier.stoerrelse() != 0) {
 
@@ -215,6 +241,8 @@ class Labyrint{
         }
     }
 
+
+    // skriver ut alle veier grafisk og på koordinatform
     public void skrivUtVeierFull(){
         if (veier.stoerrelse() != 0) {
 

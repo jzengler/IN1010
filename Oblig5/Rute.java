@@ -22,15 +22,21 @@ abstract class Rute{
 
   abstract void settTegn();
 
+
+
   // legger til en rute som nabo
   protected void leggTilNabo(Rute nabo){
       naboer.add(nabo);
   }
 
-  // grisete måte å legge til labyrint referansen etter at ruten er opprettet
+
+
+  // grisete måte å legge til labyrint-referansen etter at ruten er opprettet
   protected void tilordneLabyrint(Labyrint l){
       this.l = l;
   }
+
+
 
   // kaller gaa() på naborutene rekursivt
   protected void gaa(Rute forrige, String vei){
@@ -49,7 +55,7 @@ abstract class Rute{
           l.veier.leggTil( vei);
 
           // tilbakestill tegnene tilbake til første felles rute slik at kun en løsning vises
-          gaaTilbake(this);
+          gaaTilbake();
 
           return;
       }
@@ -75,29 +81,39 @@ abstract class Rute{
       }
 
       // endre tegn tilbake til tomt slik at blindveier ikke vises som en del av veien
-      gaaTilbake(this);
+      gaaTilbake();
 
   }
 
+
+  // kaller gaa med seg selv som startrute
   protected void finnUtvei(){
       gaa(this, "");
 
   }
 
+
+  // henter koordinater på formatet (x,y)
   protected String hentKoord(){
       return ("(" + x + "," + y + ")");
   }
 
+
+  // setter besokt flagget til true
   protected void besok(){
       besokt = true;
       tegn = '.';
   }
 
-  protected void gaaTilbake(Rute r){
+
+  // setter besokt flagget til false og endrer utskriftssymbolet
+  protected void gaaTilbake(){
       besokt = false;
       settTegn();
   }
 
+
+  // returner besokt
   protected boolean harBesokt(){
       return besokt;
   }

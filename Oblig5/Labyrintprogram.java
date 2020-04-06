@@ -48,6 +48,7 @@ class Labyrintprogram{
                 int startKol = Integer.parseInt(ord[0]);
                 int startRad = Integer.parseInt(ord[1]);
 
+                // bruker ikke returverdi, egne metoder for utskrift
                 l.finnUtveiFra(startKol, startRad);
 
                 if( utskrift.equals("detaljert") ){
