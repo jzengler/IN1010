@@ -4,12 +4,15 @@ import java.util.Scanner;
 
 class Labyrint{
 
+
+
     //Instansvariabler
     // kolonner(x) og rader(y)
     private int kolonner;
     private int rader;
     private Rute[][] ruter;
-
+    protected Liste<String> veier;
+    protected Liste<String> labyrinter;
 
 
 
@@ -30,6 +33,9 @@ class Labyrint{
             }
         }
     }
+
+
+
 
     //Metoder
 
@@ -109,24 +115,38 @@ class Labyrint{
          // +x+
          // #+#
 
+         int y_min = y - 1;
+         int y_max = y + 1;
+         int x_min = x - 1;
+         int x_max = x + 1;
+         char vegg = '#';
+
          // sjekk nabo over
-         if( y - 1 >= 0){
-             rute.leggTilNabo(ruter[x][y-1]);
+         if( y_min >= 0){
+             if(ruter[x][y_min].tilTegn() != vegg){
+                 rute.leggTilNabo(ruter[x][y_min]);
+            }
          }
 
          // sjekk nabo venstre
-         if(x - 1 >= 0){
-             rute.leggTilNabo(ruter[x-1][y]);
+         if(x_min >= 0){
+             if(ruter[x_min][y].tilTegn() != vegg){
+                 rute.leggTilNabo(ruter[x_min][y]);
+            }
          }
 
          // sjekk nabo under
-         if(y + 1 < rader){
-             rute.leggTilNabo(ruter[x][y+1]);
+         if(y_max < rader){
+             if(ruter[x][y_max].tilTegn() != vegg){
+                 rute.leggTilNabo(ruter[x][y_max]);
+             }
          }
 
          // sjekk nabo høyre
-         if(x + 1 < kolonner){
-             rute.leggTilNabo(ruter[x+1][y]);
+         if(x_max < kolonner){
+             if(ruter[x_max][y].tilTegn() != vegg){
+                 rute.leggTilNabo(ruter[x_max][y]);
+            }
          }
 
     }
@@ -141,13 +161,72 @@ class Labyrint{
         }
     }
 
-    public void finnUtveiFra(int x, int y){
+    public Liste<String> finnUtveiFra(int x, int y){
+
+        veier = new Lenkeliste<String>();
+        labyrinter = new Lenkeliste<String>();
+
+        new Lenkeliste<String>();
 
         if(ruter[x][y].tilTegn() != '#'){
             ruter[x][y].finnUtvei();
         }
         else{
             System.out.println("Koordinatene " + x + "," + y + " er ikke en vei");
+        }
+
+        return veier;
+    }
+
+    public void skrivUtKorteste(){
+
+        String kortesteVei = veier.hent(0);
+        int indeks = -1;
+
+        for(int i = 0; i < veier.stoerrelse(); i++){
+
+            if(veier.hent(i).length() < kortesteVei.length() ){
+                kortesteVei = veier.hent(i);
+                indeks = i;
+            }
+
+        }
+
+        if(indeks >= 0){
+            System.out.println("\nKorteste vei: \n" + veier.hent(indeks) + "\n");
+
+            String[] vei = veier.hent(indeks).split("-->");
+            System.out.println("Veien er " + vei.length + " ruter lang");
+        }
+
+    }
+
+    public void skrivUtVeierDetaljert(){
+        if (veier.stoerrelse() != 0) {
+
+            for (String s : veier){
+                System.out.println("\n" + s);
+            }
+
+            skrivUtKorteste();
+        }
+        else {
+            System.out.println("Ingen utveier.");
+        }
+    }
+
+    public void skrivUtVeierFull(){
+        if (veier.stoerrelse() != 0) {
+
+            for (int i = 0; i < veier.stoerrelse(); i++){
+                System.out.println( labyrinter.hent(i) );
+                System.out.println( veier.hent(i) );
+            }
+
+            skrivUtKorteste();
+        }
+        else {
+            System.out.println("Ingen utveier.");
         }
     }
 

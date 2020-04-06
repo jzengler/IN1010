@@ -5,6 +5,4 @@ class Aapning extends HvitRute{
         super(x, y);
     }
 
-
-
 }

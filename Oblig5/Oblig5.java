@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Hovedprogram {
+class Oblig5 {
     public static void main(String[] args) {
         String filnavn = null;
 

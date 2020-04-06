@@ -2,13 +2,14 @@ import java.util.ArrayList;
 abstract class Rute{
 
   //Instansvariabler
-  int x;
-  int y;
+  private int x;
+  private int y;
 
-  Labyrint l;
-  ArrayList<Rute> naboer = new ArrayList<Rute>();
+  private Labyrint l;
+  private ArrayList<Rute> naboer = new ArrayList<Rute>();
 
-  private boolean harBesokt = false;
+  private boolean besokt = false;
+  protected char tegn;
 
   //konstruktør
   Rute(int x, int y){
@@ -16,9 +17,10 @@ abstract class Rute{
     this.y = y;
   }
 
-
   //metoder
   abstract char tilTegn();
+
+  abstract void settTegn();
 
   // legger til en rute som nabo
   protected void leggTilNabo(Rute nabo){
@@ -31,40 +33,55 @@ abstract class Rute{
   }
 
   // kaller gaa() på naborutene rekursivt
-  protected String gaa(Rute forrige, String vei){
+  protected void gaa(Rute forrige, String vei){
 
+      // endrer besokt til true og rutens tegn for aa markere gaatt vei
       besok();
 
+      // hvis ruten er en aapning er en utvei funnet
+      if (this instanceof Aapning){
+
+          // legg til korrdinatet for aapningen
+          vei += hentKoord();
+
+          // Skriv ut labyrinten (med gaatt vei) og veiens koordinater som streng
+          l.labyrinter.leggTil( l.toString() );
+          l.veier.leggTil( vei);
+
+          // tilbakestill tegnene tilbake til første felles rute slik at kun en løsning vises
+          gaaTilbake(this);
+
+          return;
+      }
+      // siden ruten ikke avslutter veien legg til pil etter koordinatene
+      else{
+          vei += hentKoord() + "-->";
+      }
+
+
+
+      // sjekk alle naboer
       for(Rute n : naboer){
 
-          if(n != forrige && n.tilTegn() != '#'){
+          // sjekk at det ikke er forrige rute eller en vegg
+          // har kun hviteruter og aapninger som naboer. settes i labyrint.java
+          if( n != forrige && n.harBesokt() == false){
 
-              vei += hentKoord() + "-->";
-
-              if(n instanceof Aapning){
-                  vei += n.hentKoord();
-                  System.out.println(vei);
-                  vei += "\n";
-                  return vei;
-              }
-              else if(n.harBesokt() == true){
-                  return "Dead end!";
-              }
-
-              // walk this way, talk this way
+              // gaa videre hvis ny hvit eller aapning
+              //:musical_note: walk this way, talk this way :musical_note:
               n.gaa(this, vei);
-
           }
 
       }
 
-      return vei;
+      // endre tegn tilbake til tomt slik at blindveier ikke vises som en del av veien
+      gaaTilbake(this);
 
   }
 
-
   protected void finnUtvei(){
       gaa(this, "");
+
   }
 
   protected String hentKoord(){
@@ -72,10 +89,16 @@ abstract class Rute{
   }
 
   protected void besok(){
-      harBesokt = true;
+      besokt = true;
+      tegn = '.';
+  }
+
+  protected void gaaTilbake(Rute r){
+      besokt = false;
+      settTegn();
   }
 
   protected boolean harBesokt(){
-      return harBesokt;
+      return besokt;
   }
 }
