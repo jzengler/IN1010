@@ -178,12 +178,10 @@ class Labyrint{
 
 
     // metode for å starte søk etter utvei
-    public Liste<String> finnUtveiFra(int x, int y){
+    public void finnUtveiFra(int x, int y){
 
         veier = new Lenkeliste<String>();
         labyrinter = new Lenkeliste<String>();
-
-        new Lenkeliste<String>();
 
         if(ruter[x][y].tilTegn() != '#'){
             ruter[x][y].finnUtvei();
@@ -192,7 +190,7 @@ class Labyrint{
             System.out.println("Koordinatene " + x + "," + y + " er ikke en vei");
         }
 
-        return veier;
+        // return veier;
     }
 
 
@@ -200,37 +198,30 @@ class Labyrint{
     // skriver ut korteste vei og antallet veier funnet.
     public void skrivUtKorteste(){
 
-        String kortesteVei = veier.hent(0);
-        int indeks = -1;
+        // if(veier.stoerrelse() != 0 ){
+            String kortesteVei = veier.hent(0);
 
-        for(int i = 0; i < veier.stoerrelse(); i++){
+            for(int i = 0; i < veier.stoerrelse(); i++){
 
-            if(veier.hent(i).length() < kortesteVei.length() ){
-                kortesteVei = veier.hent(i);
-                indeks = i;
+                if(veier.hent(i).length() < kortesteVei.length() ){
+                    kortesteVei = veier.hent(i);
+                }
             }
 
+            System.out.println("\nFant " + veier.stoerrelse() + " veier");
 
+            System.out.println("\nKorteste vei: \n" + kortesteVei);
 
-            if(indeks >= 0){
+            String[] vei = veier.hent(indeks).split("-->");
+            System.out.println("Veien bestaar av " + vei.length + " ruter");
 
-                System.out.println("\nFant " + veier.stoerrelse() + " veier");
-
-                System.out.println("\nKorteste vei: \n" + veier.hent(indeks));
-
-                String[] vei = veier.hent(indeks).split("-->");
-                System.out.println("Veien bestaar av " + vei.length + " ruter");
-
-            }
-
-        }
-
+        // }
     }
 
 
     // skriver ut alle veier på koordinatform
     public void skrivUtVeierDetaljert(){
-        if (veier.stoerrelse() != 0) {
+        if (veier.stoerrelse() > 0) {
 
             for (String s : veier){
                 System.out.println("\n" + s);
@@ -246,9 +237,12 @@ class Labyrint{
 
     // skriver ut alle veier grafisk og på koordinatform
     public void skrivUtVeierFull(){
-        if (veier.stoerrelse() != 0) {
 
-            for (int i = 0; i < veier.stoerrelse(); i++){
+        int antall = veier.stoerrlese();
+
+        if (antall > 0) {
+
+            for (int i = 0; i < antall; i++){
                 System.out.println( labyrinter.hent(i) );
                 System.out.println( veier.hent(i) );
             }

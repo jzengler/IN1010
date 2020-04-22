@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.concurrent.*;
+
+
 abstract class Rute{
 
   //Instansvariabler
@@ -8,8 +11,9 @@ abstract class Rute{
   private Labyrint l;
   private ArrayList<Rute> naboer = new ArrayList<Rute>();
 
-  private boolean besokt = false;
-  protected char tegn;
+  private volatile boolean besokt = false;
+  protected volatile char tegn;
+
 
   //konstruktør
   Rute(int x, int y){
@@ -57,25 +61,62 @@ abstract class Rute{
           // tilbakestill tegnene tilbake til første felles rute slik at kun en løsning vises
           gaaTilbake();
 
-          return;
+
       }
       // siden ruten ikke avslutter veien legg til pil etter koordinatene
       else{
           vei += hentKoord() + "-->";
       }
 
+      // finn antall naboer
+      int antTraader = naboer.size();
+      // opprett array til å holde trådene
+      Thread[] t= new Thread[antTraader];
+      Rute n;
 
+      // hopper over første nabo slik at hovedtråden kan kalle gaa på den rekursivt
+      // fører til at første element alltid vil være tomt
+      for(int i = 1; i < antTraader; i++){
 
-      // sjekk alle naboer
-      for(Rute n : naboer){
+          n = naboer.get(i);
 
-          // sjekk at det ikke er forrige rute eller en vegg
-          // har kun hviteruter og aapninger som naboer. settes i labyrint.java
           if( n != forrige && n.harBesokt() == false){
 
               // gaa videre hvis ny hvit eller aapning
+
+              // Opprett objekt av typen monitor
+              Monitor mon = new Monitor(this, n, vei);
+
+              // lag og start ny monitor-tråd
+              t[i] = new Thread(mon, this.hentKoord()+":"+i);
+              t[i].start();
+              System.out.println("startet traad " + t[i].getName());
+
               //:musical_note: walk this way, talk this way :musical_note:
+              // n.gaa(this,vei);
+          }
+
+      }
+
+      if(antTraader > 0){
+          n = naboer.get(0);
+          if( n != forrige && n.harBesokt() == false){
+
               n.gaa(this, vei);
+
+          }
+      }
+
+      // Synkroniser alle tråder før vi gaar tilbake
+      for(int i = 1; i < antTraader; i++){
+
+          try{
+              System.out.println("avslutter traad " + t[i].getName());
+              t[i].join();
+          }
+          catch(Exception e){
+              // System.out.println(t[i].getName() );
+              // System.out.println("traad finnes ikke");
           }
 
       }
@@ -117,4 +158,5 @@ abstract class Rute{
   protected boolean harBesokt(){
       return besokt;
   }
+
 }
