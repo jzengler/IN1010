@@ -23,7 +23,7 @@ class Labyrintprogram{
         }
         else {
             System.out.println("FEIL! Riktig bruk av programmet: "
-                               +"java Labyrintprogram <labyrintfil> [detaljert | full]");
+                               +"java Labyrintprogram <labyrintfil> [detaljert]");
             return;
         }
 
@@ -53,9 +53,6 @@ class Labyrintprogram{
 
                 if( utskrift.equals("detaljert") ){
                     l.skrivUtVeierDetaljert();
-                }
-                else if( utskrift.equals("full") ){
-                    l.skrivUtVeierFull();
                 }
                 else{
                     l.skrivUtKorteste();

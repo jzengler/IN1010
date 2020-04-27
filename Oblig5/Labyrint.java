@@ -198,7 +198,7 @@ class Labyrint{
     // skriver ut korteste vei og antallet veier funnet.
     public void skrivUtKorteste(){
 
-        // if(veier.stoerrelse() != 0 ){
+        if(veier.stoerrelse() != 0 ){
             String kortesteVei = veier.hent(0);
 
             for(int i = 0; i < veier.stoerrelse(); i++){
@@ -212,10 +212,10 @@ class Labyrint{
 
             System.out.println("\nKorteste vei: \n" + kortesteVei);
 
-            String[] vei = veier.hent(indeks).split("-->");
+            String[] vei = kortesteVei.split("-->");
             System.out.println("Veien bestaar av " + vei.length + " ruter");
 
-        // }
+        }
     }
 
 
@@ -238,7 +238,7 @@ class Labyrint{
     // skriver ut alle veier grafisk og på koordinatform
     public void skrivUtVeierFull(){
 
-        int antall = veier.stoerrlese();
+        int antall = veier.stoerrelse();
 
         if (antall > 0) {
 

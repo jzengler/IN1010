@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 class Labyrint{
 
 
@@ -16,11 +17,6 @@ class Labyrint{
 
     // holder alle veier på koordinatform
     protected Liste<String> veier;
-
-    // holder alle veier som grafisk streng
-    protected Liste<String> labyrinter;
-
-
 
     //Konstruktør
     private Labyrint(int kolonner, int rader, Rute[][] ruter){
@@ -181,9 +177,6 @@ class Labyrint{
     public Liste<String> finnUtveiFra(int x, int y){
 
         veier = new Lenkeliste<String>();
-        labyrinter = new Lenkeliste<String>();
-
-        new Lenkeliste<String>();
 
         if(ruter[x][y].tilTegn() != '#'){
             ruter[x][y].finnUtvei();
@@ -201,27 +194,22 @@ class Labyrint{
     public void skrivUtKorteste(){
 
         String kortesteVei = veier.hent(0);
-        int indeks = -1;
 
         for(int i = 0; i < veier.stoerrelse(); i++){
 
             if(veier.hent(i).length() < kortesteVei.length() ){
                 kortesteVei = veier.hent(i);
-                indeks = i;
             }
+        }
 
+        if(veier.stoerrelse() > 0){
 
+            System.out.println("\nFant " + veier.stoerrelse() + " veier");
 
-            if(indeks >= 0){
+            System.out.println("\nKorteste vei: \n" + kortesteVei);
 
-                System.out.println("\nFant " + veier.stoerrelse() + " veier");
-
-                System.out.println("\nKorteste vei: \n" + veier.hent(indeks));
-
-                String[] vei = veier.hent(indeks).split("-->");
-                System.out.println("Veien bestaar av " + vei.length + " ruter");
-
-            }
+            String[] vei = kortesteVei.split("-->");
+            System.out.println("Veien bestaar av " + vei.length + " ruter");
 
         }
 
@@ -230,10 +218,14 @@ class Labyrint{
 
     // skriver ut alle veier på koordinatform
     public void skrivUtVeierDetaljert(){
+
         if (veier.stoerrelse() != 0) {
 
+            int ant = 0;
             for (String s : veier){
-                System.out.println("\n" + s);
+                ant ++;
+                System.out.println("\n\nL\u00D8SNING " + ant + ":");
+                System.out.println(s);
             }
 
             skrivUtKorteste();
@@ -242,22 +234,4 @@ class Labyrint{
             System.out.println("Ingen utveier.");
         }
     }
-
-
-    // skriver ut alle veier grafisk og på koordinatform
-    public void skrivUtVeierFull(){
-        if (veier.stoerrelse() != 0) {
-
-            for (int i = 0; i < veier.stoerrelse(); i++){
-                System.out.println( labyrinter.hent(i) );
-                System.out.println( veier.hent(i) );
-            }
-
-            skrivUtKorteste();
-        }
-        else {
-            System.out.println("Ingen utveier.");
-        }
-    }
-
 }

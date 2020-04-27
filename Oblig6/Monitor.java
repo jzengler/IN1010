@@ -1,8 +1,11 @@
+import java.util.concurrent.locks.*;
+
 class Monitor extends Thread{
 
     private Rute denne;
     private Rute forrige;
     private String vei;
+
 
     Monitor(Rute forrige, Rute denne, String vei){
         this.forrige = forrige;
@@ -10,12 +13,14 @@ class Monitor extends Thread{
         this.denne = denne;
     }
 
-    public void run(){
 
+    public void run(){
         // System.out.println("gaar til " + denne);
         denne.gaa(forrige, vei);
 
 
     }
+
+
 
 }
