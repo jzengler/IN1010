@@ -105,12 +105,12 @@ public abstract class Rute{
       }
 
       // Synkroniser alle tråder før vi gaar tilbake
-      for(int i = 1; i < antTraader; i++){
+      for(Thread q : t){
 
           try{
               // System.out.println("avslutter traad " + t[i].getName());
 
-              t[i].join();
+              q.join();
           }
           catch(Exception e){
               // System.out.println(t[i].getName() );
@@ -118,8 +118,6 @@ public abstract class Rute{
 
       }
 
-
-      if(antTraader > 0){
           n = naboer.get(0);
           if( n != forrige){
 
@@ -127,7 +125,8 @@ public abstract class Rute{
               n.gaa(this, vei);
 
           }
-      }
+
+
   }
 
 
