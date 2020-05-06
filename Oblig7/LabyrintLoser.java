@@ -63,9 +63,6 @@ public class LabyrintLoser extends Application {
 
             l.finnUtveiFra( grid.getColumnIndex(celle), grid.getRowIndex(celle));
 
-            l.skrivUtVeierFull();
-            // System.out.println("\n\n\n\n" + l.veier.hent(0));
-
             nesteIndeks = 0;
 
             antVeier = l.veier.stoerrelse();
@@ -88,7 +85,7 @@ public class LabyrintLoser extends Application {
             FileChooser fileChooser = new FileChooser();
 
             // sett start-sti og begrens filtyper
-            fileChooser.setInitialDirectory(new File("C:\\Users\\juzen\\Documents\\GIT\\IN1010\\Oblig7\\labyrinter"));
+            fileChooser.setInitialDirectory(new File("."));
 
             fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Maze Files", "*.in")
