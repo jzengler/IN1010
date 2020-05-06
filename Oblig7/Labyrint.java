@@ -8,11 +8,11 @@ class Labyrint{
 
     //Instansvariabler
     // kolonner(x) og rader(y)
-    private int kolonner;
-    private int rader;
+    public int kolonner;
+    public int rader;
 
     // "matrise" til å holde alle rutene
-    private Rute[][] ruter;
+    public Rute[][] ruter;
 
     // holder alle veier på koordinatform
     protected Liste<String> veier;
