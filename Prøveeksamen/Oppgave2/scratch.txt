@@ -1,0 +1,19 @@
+class Frekvens
+
+    String tekster[];
+
+    konstruktør(array string)
+        inntil 1000 stringer
+
+    metoder
+        void finnFlest
+
+        String hentFlest
+
+        int hentAntall
+
+
+class BrukFrekvens
+
+    main
+        param - fil
