@@ -25,31 +25,41 @@ class Terminal implements Brukergrensesnitt{
     // returner indeks for alternativ
     public int beOmKommando(String spoersmaal, String[] alternativer){
 
-        // skriv ut alternativene til terminal
+        // skriv ut spoersmaal og alternativene til terminal
+        System.out.println("\n" + spoersmaal);
+
         for(int i = 0; i < alternativer.length; i++){
             System.out.println(i + ": " + alternativer[i]);
         }
 
-        // dummy verdi for aa starte while-loekken
+
+        // dummy-verdi for aa starte while-loekken
         int valg = -1;
 
-        // saa lenge "valg" ikke er en int eller en indeks i alternativer be om ny input
-        while( valg < 0 || valg >= alternativer.length){
+        // saa lenge "valg" ikke er en indeks
+        while( valg < 0 || valg >= alternativer.length ){
 
             // sjekk om neste input er en int
-            if(skanner.hasNextInt() ){
+            if( skanner.hasNextInt() ){
                 valg = skanner.nextInt();
             }
-            // skriv ut feilmelding, hent neste verdi og sett dummy saa loopen gjentar seg
             else{
-                System.out.println("Ugyldig valg! Skriv inn ett tall:");
+                // les neste, ikke bruk
                 skanner.next();
+            }
+
+            // skriv ut alternativet hvis "valg" er en indeks
+            if( valg >= 0 && valg < alternativer.length){
+                giStatus("Valgte: " + alternativer[valg]);
+            }
+            // skriv ut feilmelding og sett dummy saa loopen gjentar seg
+            else{
+                System.out.println("Ugyldig valg! Skriv inn ett tall fra listen med alternativer!");
                 valg = -1;
             }
         }
 
-        // skriv ut alternativet og returner indeksen
-        giStatus("Valgte: " + alternativer[valg]);
+
         return valg;
     }
 
