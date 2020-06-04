@@ -19,7 +19,7 @@ class Terminal implements Brukergrensesnitt{
     // METODER
     // skriv ut status-streng
     public void giStatus(String status){
-        System.out.println(status);
+        System.out.println("\n" + status);
     }
 
     // returner indeks for alternativ
