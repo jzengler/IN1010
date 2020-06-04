@@ -6,6 +6,7 @@ class Sted{
     // INSTANSVARIABLER
     String beskrivelse;
     private Skattkiste kiste;
+    protected Sted nesteSted;
 
 
     // KONSTRUKTOER
@@ -23,7 +24,11 @@ class Sted{
         return kiste;
     }
 
-    Sted gaaVidere(Sted sted){
-        return sted;
+    Sted gaaVidere(){
+        return nesteSted;
+    }
+
+    public String toString(){
+        return beskrivelse;
     }
 }

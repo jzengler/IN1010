@@ -4,37 +4,48 @@ import java.io.FileNotFoundException;
 
 class UT{
 
+    public static String stederFil = "steder.txt";
+    public static String gjenstanderFil = "gjenstander.txt";
+    public static int antallTrekk = 10;
+    public static Gjenstand[] g;
+
+
 
     public static void main(String[] args){
 
+        g = lesGjenstanderFil(gjenstanderFil);
 
-        String gjenstanderFil = "gjenstander.txt";
-        Gjenstand[] items = lesFraFil(gjenstanderFil);
+        String stederFil = "steder.txt";
+        Terreng s = new Terreng(stederFil);
 
-        Skattkiste kiste = new Skattkiste(items);
-        System.out.println("innhold\n" + kiste + "\n");
-        System.out.println( "tar ut: " + kiste.taUtGjenstand() );
-        System.out.println("innhold\n" + kiste + "\n");
-        System.out.println("legger ned: " + items[0] + " fikk: " + kiste.leggNedGjenstand(items[0]) );
-        System.out.println("innhold\n" + kiste  + "\n");
+
+        // String gjenstanderFil = "gjenstander.txt";
+        // Gjenstand[] items = lesGjenstanderFil(gjenstanderFil);
         //
-        // Terminal t = new Terminal(new Scanner(System.in));
-        // Robot r = new Robot();
-
-        // String[] alt = {"test", "alt", "jada"};
-
-        // r.giStatus("ROBOT info");
-        // r.beOmKommando("Hva velger du?", alt);
+        // Skattkiste kiste = new Skattkiste(items);
+        // System.out.println("innhold\n" + kiste + "\n");
+        // System.out.println( "tar ut: " + kiste.taUtGjenstand() );
+        // System.out.println("innhold\n" + kiste + "\n");
+        // System.out.println("legger ned: " + items[0] + " fikk denne: " + kiste.leggNedGjenstand(items[0]) );
+        // System.out.println("innhold\n" + kiste  + "\n");
+        // //
+        // // Terminal t = new Terminal(new Scanner(System.in));
+        // // Robot r = new Robot();
         //
-        // t.giStatus("HUMAN tekst");
-        // t.beOmKommando("Hva velger du?", alt);
+        // // String[] alt = {"test", "alt", "jada"};
+        //
+        // // r.giStatus("ROBOT info");
+        // // r.beOmKommando("Hva velger du?", alt);
+        // //
+        // // t.giStatus("HUMAN tekst");
+        // // t.beOmKommando("Hva velger du?", alt);
 
 
 
     }
 
     // flytt dit det passer senere
-    public static Gjenstand[] lesFraFil(String filnavn){
+    public static Gjenstand[] lesGjenstanderFil(String filnavn){
 
         Scanner skanner = null;
 
