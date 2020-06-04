@@ -33,12 +33,15 @@ class Skattkiste{
     //
     public int leggNedGjenstand(Gjenstand gjenstand){
 
+        // hent verdien til gjenstanden
         int verdi = gjenstand.hentVerdi();
+
+        // legg gjenstanden i kisten (uten aa endre verdi)
         innhold.add(gjenstand);
 
+        // returner verdi [100%,110%]
         Random r = new Random();
-
-        return verdi + r.nextInt(verdi)/10;
+        return verdi + r.nextInt(verdi + 1)/10;
 
     }
 
