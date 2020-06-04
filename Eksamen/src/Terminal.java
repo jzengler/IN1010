@@ -12,7 +12,6 @@ class Terminal implements Brukergrensesnitt{
     // KONSTRUKTOER
     Terminal(Scanner skanner){
         this.skanner = skanner;
-
     }
 
 
