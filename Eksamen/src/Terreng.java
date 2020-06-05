@@ -77,21 +77,15 @@ class Terreng{
             // System.out.println(retur[j].hentSkattkiste());
 
             // hoppes over foerste runde
-            if( j != 0){
-
+            if( j > 0){
                 // legg til alle nestesteder unttatt for siste element
-                if(j < retur.length){
                     retur[j-1].nesteSted = retur[j];
-                }
-                // siste plass peker tilbake til start
-                else{
-                    retur[j-1].nesteSted = retur[0];
-                }
-
             }
-
-
         }
+
+        // sett siste til aa peke paa foerste
+        retur[retur.length - 1].nesteSted = retur[0];
+
         return retur;
 
     }

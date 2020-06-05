@@ -16,60 +16,39 @@ class Spill{
 
         gjenstander = lesGjenstanderFil(GJENSTANDER_FIL);
         Terreng steder = new Terreng(STEDER_FIL);
-        Spiller pers = null;
-        Spiller npc = null;
 
-
+        // les inn navn paa spiller
         Scanner skan = new Scanner(System.in);
 
         System.out.println("Velg et navn");
         String navn = skan.nextLine();
 
-        Terminal term = new Terminal( new Scanner(System.in) );
-        pers = new Spiller(navn, steder.hentStart(), term);
+        // menneske eller robot?
+        System.out.println("Vil du spille selv? [J]");
+        String menneske = skan.next().toUpperCase();
 
+        Spiller spiller;
 
-        System.out.println("Vil du spille mot en robot? [J,N]");
-        String comp = skan.next().toUpperCase();
-
-        if("JA".contains(comp)){
-
+        if("JA".contains(menneske)){
+            Terminal term = new Terminal( new Scanner(System.in) );
+            spiller = new Spiller(navn, steder.hentStart(), term);
+        }
+        else{
             Robot rob = new Robot();
-            npc = new Spiller("Rob", steder.hentStart(), rob);
-
+            spiller = new Spiller(navn, steder.hentStart(), rob);
         }
 
+        // start spillet
         System.out.println("\nDen magiske reisen begynner...\n");
 
         for(int i = 0; i < ANTALL_TREKK; i++){
 
-            pers.nyttTrekk();
-
-            if(npc != null){
-                npc.nyttTrekk();
-            }
+            spiller.nyttTrekk();
 
         }
 
         System.out.println("\nDen magiske reisen er over\n");
-
-        if(npc != null){
-            if( pers.hentFormue() > npc.hentFormue() ){
-                System.out.println(pers.hentNavn() + " vant!!!");
-            }
-            else{
-                System.out.println(npc.hentNavn() + " vant...");
-            }
-
-            System.out.println(npc);
-        }
-
-        System.out.println(pers);
-
-
-
-
-
+        System.out.println(spiller);
     }
 
     // les listen med objekter til en statisk variabel
