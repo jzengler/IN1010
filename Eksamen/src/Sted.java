@@ -28,6 +28,7 @@ class Sted{
         return nesteSted;
     }
 
+    @Override
     public String toString(){
         return beskrivelse;
     }

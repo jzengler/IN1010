@@ -21,8 +21,11 @@ class Gjenstand{
         return verdi;
     }
 
+    public String hentType(){
+        return type;
+    }
 
     public String toString(){
-        return type + " - " + verdi;
+        return type;
     }
 }

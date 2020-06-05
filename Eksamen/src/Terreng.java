@@ -9,19 +9,12 @@ class Terreng{
 
 
     // INSTANSVARIABLER
-    LinkedList<Sted> terreng = new LinkedList<Sted>();
-
+    Sted[] terreng;
 
     // KONSTRUKTOER
     Terreng(String stederFil){
 
-        Sted[] steder = lesStederFil(stederFil);
-
-        for(int i = 0; i < steder.length; i++){
-            terreng.add( steder[i] );
-        }
-
-
+        terreng = lesStederFil(stederFil);
 
     }
 
@@ -32,7 +25,7 @@ class Terreng{
 
         // returner et tilfeldig startsted
         Random r = new Random();
-        return terreng.get( r.nextInt( terreng.size() ) );
+        return terreng[ ( r.nextInt( terreng.length ) ) ];
 
     }
 
@@ -54,10 +47,14 @@ class Terreng{
         }
 
         int i = 0;
+
+        // saa lenge det er flere linjer i filen
         while (skanner.hasNextLine()){
 
+            // hent neste linje
             String beskrivelse = skanner.nextLine();
 
+            // legg til hvis strengen ikke er tom
             if(beskrivelse != null){
 
                 temp[i++] = new Sted(beskrivelse);
@@ -74,7 +71,7 @@ class Terreng{
         // legg til alle stedene i retur-arrayet
         for(int j = 0; j < retur.length; j++){
             retur[j] = temp[j];
-            retur[j].leggTilSkattkiste(new Skattkiste( UT.g ));
+            retur[j].leggTilSkattkiste(new Skattkiste( Spill.gjenstander ));
 
             // System.out.println(retur[j]);
             // System.out.println(retur[j].hentSkattkiste());
