@@ -26,6 +26,7 @@ class Spiller{
     // METODER
     public void nyttTrekk(){
 
+
         // oppdater spillet med sted og funn av kiste
         grensesnitt.giStatus(hentNavn() + her.toString() );
         grensesnitt.giStatus(hentNavn() + "Du fant en kiste!");

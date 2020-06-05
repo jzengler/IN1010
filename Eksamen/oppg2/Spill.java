@@ -15,7 +15,7 @@ class Spill{
     public static void main(String[] args){
 
         gjenstander = lesGjenstanderFil(GJENSTANDER_FIL);
-        Terreng steder = new Terreng(STEDER_FIL);
+        Terreng terreng = new Terreng(STEDER_FIL);
 
         // les inn navn paa spiller
         Scanner skan = new Scanner(System.in);
@@ -31,11 +31,11 @@ class Spill{
 
         if("JA".contains(menneske)){
             Terminal term = new Terminal( new Scanner(System.in) );
-            spiller = new Spiller(navn, steder.hentStart(), term);
+            spiller = new Spiller(navn, terreng.hentStart(), term);
         }
         else{
             Robot rob = new Robot();
-            spiller = new Spiller(navn, steder.hentStart(), rob);
+            spiller = new Spiller(navn, terreng.hentStart(), rob);
         }
 
         // start spillet

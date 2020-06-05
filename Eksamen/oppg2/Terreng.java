@@ -9,12 +9,12 @@ class Terreng{
 
 
     // INSTANSVARIABLER
-    Sted[] terreng;
+    Sted[] steder;
 
     // KONSTRUKTOER
     Terreng(String stederFil){
 
-        terreng = lesStederFil(stederFil);
+        steder = lesStederFil(stederFil);
 
     }
 
@@ -25,7 +25,7 @@ class Terreng{
 
         // returner et tilfeldig startsted
         Random r = new Random();
-        return terreng[ ( r.nextInt( terreng.length ) ) ];
+        return steder[ ( r.nextInt( steder.length ) ) ];
 
     }
 
