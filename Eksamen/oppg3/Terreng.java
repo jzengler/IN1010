@@ -8,8 +8,10 @@ class Terreng{
     // KLASSEVARIABLER
     public static Gjenstand[] gjenstander;
 
+
     // INSTANSVARIABLER
     Sted[] steder;
+    Random r = new Random();
 
     // KONSTRUKTOER
     Terreng(String stederFil, String gjenstanderFil){
@@ -25,7 +27,6 @@ class Terreng{
     public Sted hentStart(){
 
         // returner et tilfeldig startsted
-        Random r = new Random();
         return steder[ ( r.nextInt( steder.length ) ) ];
 
     }
