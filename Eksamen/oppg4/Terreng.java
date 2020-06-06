@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Random;
 
 class Terreng{
@@ -10,14 +9,15 @@ class Terreng{
 
 
     // INSTANSVARIABLER
-    Sted[] steder;
-    Random r = new Random();
+    protected Sted[] steder;
+    protected Random r = new Random();
 
     // KONSTRUKTOER
     Terreng(String stederFil, String gjenstanderFil){
 
         gjenstander = lesGjenstanderFil(gjenstanderFil);
         steder = lesStederFil(stederFil);
+
 
     }
 
@@ -84,7 +84,7 @@ class Terreng{
 
         Scanner skanner = null;
 
-        Sted[] temp = new Sted[500];
+        Sted[] temp = new VeivalgSted[500];
         Sted[] retur;
 
         try {
@@ -106,7 +106,7 @@ class Terreng{
             // legg til hvis strengen ikke er tom
             if(beskrivelse != null){
 
-                temp[i++] = new Sted(beskrivelse);
+                temp[i++] = new VeivalgSted(beskrivelse);
             }
             // hopper over tomme linjer
             else{
@@ -115,7 +115,7 @@ class Terreng{
         }
 
         // opprett array med rett stoerelse
-        retur = new Sted[i];
+        retur = new VeivalgSted[i];
 
         // legg til alle stedene i retur-arrayet
         for(int j = 0; j < retur.length; j++){

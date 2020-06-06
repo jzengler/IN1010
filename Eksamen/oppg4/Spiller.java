@@ -4,12 +4,12 @@ class Spiller implements Comparable<Spiller>{
 
 
     // INSTANSVARIABLER
-    private Sted her;
-    private Brukergrensesnitt grensesnitt;
-    private String navn;
-    private Skattkiste ryggsekk;
-    private int plassISekk = Spillkontroll.PLASS_I_SEKK;
-    private int formue = 0;
+    protected Sted her;
+    protected Brukergrensesnitt grensesnitt;
+    protected String navn;
+    protected Skattkiste ryggsekk;
+    protected int plassISekk = Spillkontroll.PLASS_I_SEKK;
+    protected int formue = 0;
 
     // KONSTRUKTOER
     Spiller(String navn, Sted her, Brukergrensesnitt grensesnitt){
@@ -100,6 +100,7 @@ class Spiller implements Comparable<Spiller>{
 
 
         grensesnitt.giStatus(hentNavn() + "Trasker videre...");
+
         her = her.gaaVidere();
 
     }

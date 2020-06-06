@@ -4,8 +4,8 @@ class Sted{
 
 
     // INSTANSVARIABLER
-    String beskrivelse;
-    private Skattkiste kiste;
+    protected String beskrivelse;
+    protected Skattkiste kiste;
     protected Sted nesteSted;
 
 

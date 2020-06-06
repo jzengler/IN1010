@@ -28,11 +28,15 @@ public class Spillkontroll extends Application{
 
     public static void main(String[] args){
 
-        Terreng terreng = new Terreng(STEDER_FIL, GJENSTANDER_FIL);
+        // Robot r = new Robot();
+        // VeivalgTerreng vvt = new VeivalgTerreng(STEDER_FIL, GJENSTANDER_FIL);
+        // VeivalgSpiller vvs = new VeivalgSpiller("test", vvt.hentStart(), r);
+        // Spiller poeng = Spill.startSpill(vvt, vvs);
 
-        // les inn navn paa spiller
+        // for aa les inn spiller valg
         Scanner skan = new Scanner(System.in);
 
+        // spiller navn
         System.out.println("Velg et navn");
         String navn = skan.nextLine().toUpperCase();
 
@@ -40,18 +44,35 @@ public class Spillkontroll extends Application{
         System.out.println("Vil du spille selv? [J]");
         String menneske = skan.next().toUpperCase();
 
-        Spiller spiller;
+        // terreng valg
+        System.out.println("Vil du spille med enkelt terreng? [J]");
+        String enkelt = skan.next().toUpperCase();
+
+
+        // instansier robot eller terminal
+
+        Brukergrensesnitt grensesnitt;
 
         if("JA".contains(menneske)){
-            Terminal term = new Terminal( new Scanner(System.in) );
-            spiller = new Spiller(navn, terreng.hentStart(), term);
+            grensesnitt = new Terminal( new Scanner(System.in) );
         }
         else{
-            Robot rob = new Robot();
-            spiller = new Spiller(navn, terreng.hentStart(), rob);
+            grensesnitt = new Robot();
         }
 
-        // start spillet
+        Terreng terreng;
+        Spiller spiller;
+
+        if("JA".contains(enkelt)){
+            terreng = new Terreng(STEDER_FIL, GJENSTANDER_FIL);
+            spiller = new Spiller(navn, terreng.hentStart(), grensesnitt);
+        }
+        else{
+            terreng = new VeivalgTerreng(STEDER_FIL, GJENSTANDER_FIL);
+            spiller = new VeivalgSpiller(navn, terreng.hentStart(), grensesnitt);
+        }
+
+        // START SPILLET
         Spiller poeng = Spill.startSpill(terreng, spiller);
         resultat = poeng.toString();
 

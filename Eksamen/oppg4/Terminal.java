@@ -37,27 +37,30 @@ class Terminal implements Brukergrensesnitt{
 
         // skriv ut spoersmaal
         System.out.println(spoersmaal);
-        // skriv ut svar-hint
-        System.out.println("Ja [J], nei [N]?");
 
-        // valider svaret fra bruker
-        // ber om ny input hvis det ikke matcher
-        while(taUt.equals("")){
+        // skriv ut svar-hint bare hvis sekk eller kisten
+        if(!spoersmaal.contains("vei")){
+            System.out.println("Ja [J], nei [N]?");
 
-            // hent neste ord
-            taUt = skanner.next().toUpperCase();
+            // valider svaret fra bruker
+            // ber om ny input hvis det ikke matcher
+            while(taUt.equals("")){
 
-            // bruker vil ikke selge/ta noe
-            if("NEI".contains(taUt)){
-                return -1;
+                // hent neste ord
+                taUt = skanner.next().toUpperCase();
+
+                // bruker vil ikke selge/ta noe
+                if("NEI".contains(taUt)){
+                    return -1;
+                }
+                // maa fange opp ja saa ikke loopen fortsetter
+                // ugyldig input, loop igjen
+                else if(!"JA".contains(taUt)){
+                    System.out.println("Forstod ikke svaret... Skriv en gang til");
+                    taUt = "";
+                }
+
             }
-            // maa fange opp ja saa ikke loopen fortsetter
-            // ugyldig input, loop igjen
-            else if(!"JA".contains(taUt)){
-                System.out.println("Forstod ikke svaret... Skriv en gang til");
-                taUt = "";
-            }
-
         }
 
 
@@ -73,7 +76,7 @@ class Terminal implements Brukergrensesnitt{
 
 
         // tillat spiller aa velge gjenstand hvis det er fra sekken
-        if(spoersmaal.contains("sekk")){
+        if(!spoersmaal.contains("kiste")){
 
             // skriv ut alle alternativene
             for(int i = 0; i < antall; i++){
@@ -82,8 +85,6 @@ class Terminal implements Brukergrensesnitt{
 
             // loop til bruker velger en gyldig indeks
             while( valg == -1 ){
-
-                System.out.println("Velg gjenstand [heltall]");
 
                 // sjekk om neste input er en int
                 if( skanner.hasNextInt() ){
