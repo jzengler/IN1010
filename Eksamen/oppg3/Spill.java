@@ -2,20 +2,29 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.text.*;
+import javafx.stage.FileChooser;
+
 class Spill{
 
     public final static String STEDER_FIL = "steder.txt";
     public final static String GJENSTANDER_FIL = "gjenstander.txt";
     public final static int ANTALL_TREKK = 2;
     public final static int PLASS_I_SEKK = ANTALL_TREKK / 2;
-    public static Gjenstand[] gjenstander;
 
+    Stage stage;
 
 
     public static void main(String[] args){
 
-        gjenstander = lesGjenstanderFil(GJENSTANDER_FIL);
-        Terreng terreng = new Terreng(STEDER_FIL);
+        Terreng terreng = new Terreng(STEDER_FIL, GJENSTANDER_FIL);
 
         // les inn navn paa spiller
         Scanner skan = new Scanner(System.in);
@@ -47,55 +56,17 @@ class Spill{
 
         }
 
+        // launch(her)?
         System.out.println("\nDen magiske reisen er over\n");
         System.out.println(spiller);
     }
 
-    // les listen med objekter til en statisk variabel
-    // Skattkiste henter tilfeldige elementer fra listen
-    public static Gjenstand[] lesGjenstanderFil(String filnavn){
-
-        Scanner skanner = null;
-
-        Gjenstand[] temp = new Gjenstand[500];
-        Gjenstand[] retur;
-
-        try {
-            skanner = new Scanner(new File(filnavn));
-        }
-        catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
-            System.exit(1);
-        }
-
-        int i = 0;
-        while (skanner.hasNextLine()){
-
-            if( skanner.hasNext() ){
-                String type = skanner.next();
-
-                if( skanner.hasNextInt()){
-                    int verdi = skanner.nextInt();
-
-                    temp[i++] = new Gjenstand(type, verdi);
-                }
-            }
-            // hopper over tomme linjer
-            else{
-                break;
-            }
-        }
-
-        retur = new Gjenstand[i];
-
-        for(int j = 0; j < retur.length; j++){
-            retur[j] = temp[j];
-        }
-
-
-
-        return retur;
-
-    }
+    // class StoppBehandler implements EventHandler<ActionEvent>{
+    //
+    //     @Override
+    //     public void handle(ActionEvent event){
+    //         System.exit(0);
+    //     }
+    // }
 
 }

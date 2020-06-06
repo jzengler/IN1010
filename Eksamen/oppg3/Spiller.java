@@ -18,7 +18,7 @@ class Spiller{
         this.grensesnitt = grensesnitt;
 
         // Opprett ryggsekk med noen tilfeldige antall ting
-        ryggsekk = new Skattkiste( Spill.gjenstander );
+        ryggsekk = new Skattkiste( Terreng.gjenstander );
         // juster antall ledige plasser i sekken
         plassISekk = plassISekk - ryggsekk.antallGjenstander();
     }
