@@ -9,6 +9,7 @@ class Skattkiste{
     // INSTANSVARIABLER
     // magisk kiste med "ubegrenset" plass
     public ArrayList<Gjenstand> innhold = new ArrayList<Gjenstand>();
+    Random r = new Random();
 
 
     // KONSTRUKTOER
@@ -17,8 +18,7 @@ class Skattkiste{
         // Tar imot alle gjenstander saa noen kan velges tilfeldig
 
         //  sett et random antall gjenstander i intervallet [1,Spill.PLASS_I_SEKK]
-        Random r = new Random();
-        int antallGjenstander = r.nextInt(Spill.PLASS_I_SEKK)+1;
+        int antallGjenstander = r.nextInt(Spillkontroll.PLASS_I_SEKK)+1;
 
         // fyll med tilfeldig gjenstander
         for(int i = 0; i < antallGjenstander; i++){
@@ -51,22 +51,14 @@ class Skattkiste{
         innhold.add(gjenstand);
 
         // returner verdi [100%,110%]
-        Random r = new Random();
         return verdi + r.nextInt(verdi + 1)/10;
 
     }
 
-    // public Gjenstand taUtGjenstand(){
-    //
-    //     // velg tilfeldig indeks fra listen med gjenstander
-    //     Random r = new Random();
-    //     int i = r.nextInt( innhold.size() );
-    //
-    //     // fjern gjenstand og returner
-    //     return innhold.remove(i);
-    // }
-
-    //  overload for aa la spilleren velge en gjenstand selv
+    //  la til parameteren for aa la spilleren velge en gjenstand selv
+    //  lagde opprinnelig en overload av metoden
+    //  men jeg syntes det ble mer oversiktlig aa benytte random
+    //  foer kallet paa denne andre steder
     public Gjenstand taUtGjenstand(int indeks){
 
         // fjern gjenstand og returner

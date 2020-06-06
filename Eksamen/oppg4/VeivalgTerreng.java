@@ -1,4 +1,4 @@
-class {
+class VeivalgTerreng extends Terreng{
     // KLASSEVARIABLER
 
 

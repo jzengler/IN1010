@@ -8,7 +8,7 @@ class Spiller{
     private Brukergrensesnitt grensesnitt;
     private String navn;
     private Skattkiste ryggsekk;
-    private int plassISekk = Spill.PLASS_I_SEKK;
+    private int plassISekk = Spillkontroll.PLASS_I_SEKK;
     private int formue = 0;
 
     // KONSTRUKTOER
@@ -18,7 +18,7 @@ class Spiller{
         this.grensesnitt = grensesnitt;
 
         // Opprett ryggsekk med noen tilfeldige antall ting
-        ryggsekk = new Skattkiste( Spill.gjenstander );
+        ryggsekk = new Skattkiste( Terreng.gjenstander );
         // juster antall ledige plasser i sekken
         plassISekk = plassISekk - ryggsekk.antallGjenstander();
     }
@@ -26,39 +26,39 @@ class Spiller{
     // METODER
     public void nyttTrekk(){
 
-
         // oppdater spillet med sted og funn av kiste
-        grensesnitt.giStatus(hentNavn() + her.toString() );
+        grensesnitt.giStatus("\n" + hentNavn() + her.toString());
         grensesnitt.giStatus(hentNavn() + "Du fant en kiste!");
 
         // hent kisten fra stedet
         Skattkiste kiste = her.hentSkattkiste();
 
 
+        // her kunne det vaert bedre aa ta fra kisten foerst for aa unngaa at spiller kan faa tilbake samme gjenstand
 
         // selge noe? trenger du baNaNer?
         String[] selg = innhold(ryggsekk);
 
         // hent indeks for gjenstanden som skal legges ned, returnerer -1 hvis tom eller nei
-        int indeks = grensesnitt.beOmKommando("Vil du selge noe fra ryggsekken?", selg);
+        int indeks = grensesnitt.beOmKommando("\n" + hentNavn() + "Vil du selge noe fra ryggsekken?", selg);
 
-        // sett inn tom linje for bedre lesbarhet i terminal
-        System.out.println("");
 
         // gyldig indeks
         if(indeks >= 0){
 
+            Gjenstand solgt = ryggsekk.taUtGjenstand(indeks);
+
             // ta ut av sekk, legg ned i kiste
-            int verdi = kiste.leggNedGjenstand( ryggsekk.taUtGjenstand(indeks) );
+            // svaket her er at spiller legger noe i kisten foerst, det er derfor mulig aa faa samme gjenstand tilbake
+            int verdi = kiste.leggNedGjenstand( solgt );
             // oek formuen fra salget
             formue += verdi;
 
-            // tingen som ble solgt
-            String solgt = kiste.innhold.get( kiste.antallGjenstander() - 1 ).toString().toUpperCase();
+            // tingen som ble solgt'
+            // String solgt = kiste.innhold.get( kiste.antallGjenstander() - 1 ).toString().toUpperCase();
 
             // hva ble solgt og hva fikk spilleren for det
-            grensesnitt.giStatus(hentNavn() + "Solgte en " + solgt);
-            grensesnitt.giStatus(hentNavn() + "Den var verdt " + verdi + " baNaNer!");
+            grensesnitt.giStatus(hentNavn() + "Fikk " + verdi + " baNaNer for ##" + solgt.toString().toUpperCase() + "##");
 
             // en plass mer i sekken
             plassISekk++;
@@ -70,10 +70,8 @@ class Spiller{
         String[] ta = innhold(kiste);
 
         // send til brukergrensesnitt
-        indeks = grensesnitt.beOmKommando("Vil du aapne kisten?", ta);
+        indeks = grensesnitt.beOmKommando("\n" + hentNavn() + "Vil du aapne kisten?", ta);
 
-        // sett inn tom linje for bedre lesbarhet i terminal
-        System.out.println("");
 
         // spiller svarte nei
         if(indeks == -1){
@@ -81,14 +79,17 @@ class Spiller{
         }
         // plass i sekken?
         else if(ryggsekk.antallGjenstander() >= 0 && ryggsekk.antallGjenstander() < plassISekk){
+
+            Gjenstand fikk = kiste.taUtGjenstand(indeks);
+
             // ta ut av kisten, legg ned i sekken
-            ryggsekk.leggNedGjenstand( kiste.taUtGjenstand(indeks) );
+            ryggsekk.leggNedGjenstand( fikk );
 
             // streng av innholdet fra kisten, for lesbarhet
-            String ting = ryggsekk.innhold.get( ryggsekk.antallGjenstander() - 1 ).toString().toUpperCase();
+            String ting = fikk.toString().toUpperCase();
 
             // skriv ut info om tingen
-            grensesnitt.giStatus(hentNavn() + "Se hva som spratt ut av kisten!\n" + ting);
+            grensesnitt.giStatus(hentNavn() + "Du fikk ##" + ting + "## av den magiske kisten!");
 
             // en plass mindre i sekken
             plassISekk--;
@@ -115,7 +116,7 @@ class Spiller{
     }
 
     public String toString(){
-        return hentNavn() + " har " + hentFormue() + " baNaNer i banken!";
+        return hentNavn() + " " + hentFormue() + " baNaNer";
     }
 
     //  bygg streng array for kiste-innhold

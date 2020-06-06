@@ -1,0 +1,26 @@
+sett inn i spillkontroll
+// sorter spillerene etter hoyeste score
+Arrays.sort(poengliste);
+
+// lagre sortert liste i static streng saa GUI kan hente
+for(int i = 0; i < poengliste.length; i++){
+    resultat = resultat + "\n" + (i+1) + " : " + poengliste[i].toString();
+}
+
+
+sett inn i spill
+for(int j = 0; j < spillere.length; j++){
+
+    spillere[j].nyttTrekk();
+
+}
+
+sett inn i spiller
+// sammenlign formue med spiller
+// synkende rekkefølge
+@Override
+public int compareTo(Spiller s){
+
+    return s.hentFormue() - formue;
+
+}

@@ -8,6 +8,7 @@ class Terminal implements Brukergrensesnitt{
 
     // INSTANSVARIABLER
     Scanner skanner;
+    Random r = new Random();
 
 
     // KONSTRUKTOER
@@ -21,7 +22,7 @@ class Terminal implements Brukergrensesnitt{
     public void giStatus(String status){
         System.out.println(status);
         // vent paa at bruker trykker enter for aa fortsette
-        skanner.nextLine();
+        // skanner.nextLine();
     }
 
     // returner indeks for alternativ
@@ -106,8 +107,6 @@ class Terminal implements Brukergrensesnitt{
         // velg noe tilfeldig hvis det er fra kisten
         // innholdet i kisten vises heller ikke til spiller
         else{
-            // maa strengt talt ikke genereres siden det finnes en overloaded taUtGjenstand() i Skattkiste
-            Random r = new Random();
             valg = r.nextInt(antall);
         }
 

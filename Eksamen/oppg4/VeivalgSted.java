@@ -1,4 +1,4 @@
-class {
+class VeivalgSted extends Sted{
     // KLASSEVARIABLER
 
 

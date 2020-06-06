@@ -1,4 +1,4 @@
-class {
+class VeivalgSpiller extends Spiller{
     // KLASSEVARIABLER
 
 
