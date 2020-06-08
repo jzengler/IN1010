@@ -123,8 +123,8 @@ public class Spillkontroll extends Application{
         }
 
         // lag traad som venter 5 sek foer den avslutter GUI
-        // Thread avslutt = new Thread( new StoppGUI() );
-        // avslutt.start();
+        Thread avslutt = new Thread( new StoppGUI() );
+        avslutt.start();
 
         launch(args);
     }
