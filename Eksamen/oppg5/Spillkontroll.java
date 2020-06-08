@@ -28,53 +28,99 @@ public class Spillkontroll extends Application{
 
     public static void main(String[] args){
 
-        // Robot r = new Robot();
-        // VeivalgTerreng vvt = new VeivalgTerreng(STEDER_FIL, GJENSTANDER_FIL);
-        // VeivalgSpiller vvs = new VeivalgSpiller("test", vvt.hentStart(), r);
-        // Spiller poeng = Spill.startSpill(vvt, vvs);
-
         // for aa les inn spiller valg
         Scanner skan = new Scanner(System.in);
 
-        // spiller navn
-        System.out.println("Velg et navn");
-        String navn = skan.nextLine().toUpperCase();
 
         // menneske eller robot?
         System.out.println("Vil du spille selv? [J]");
         String menneske = skan.next().toUpperCase();
+
+        System.out.println("Hvor mange roboter skal spille? [heltall]");
+        int antallRoboter = skan.nextInt();
 
         // terreng valg
         System.out.println("Vil du spille med enkelt terreng? [J]");
         String enkelt = skan.next().toUpperCase();
 
 
-        // instansier robot eller terminal
-
-        Brukergrensesnitt grensesnitt;
-
-        if("JA".contains(menneske)){
-            grensesnitt = new Terminal( new Scanner(System.in) );
-        }
-        else{
-            grensesnitt = new Robot();
-        }
-
+        //  Oppsett enkelt eller flere veivalg
         Terreng terreng;
-        Spiller spiller;
 
         if("JA".contains(enkelt)){
             terreng = new Terreng(STEDER_FIL, GJENSTANDER_FIL);
-            spiller = new Spiller(navn, terreng.hentStart(), grensesnitt);
         }
         else{
             terreng = new VeivalgTerreng(STEDER_FIL, GJENSTANDER_FIL);
-            spiller = new VeivalgSpiller(navn, terreng.hentStart(), grensesnitt);
         }
 
+
+        // instansier robot og Terminal
+        // opprett terminal-spiller
+        Spiller[] spillere;
+        String navn = "";
+        Brukergrensesnitt terminal = null;
+
+        if("JA".contains(menneske)){
+
+            spillere = new Spiller[antallRoboter + 1];
+
+            // spiller navn
+            System.out.println("Skriv inn et navn");
+            navn = skan.next().toUpperCase();
+
+            terminal = new Terminal( new Scanner(System.in) );
+
+        }
+        else{
+            spillere = new Spiller[antallRoboter];
+        }
+
+
+
+        // oppretter robot-grensesnitt selv om det ikke maa brukes
+        Brukergrensesnitt robot = new Robot();
+
+        // instansier spiller eller veivalgspiller
+        // enkelt terreng
+        if("JA".contains(enkelt)){
+
+            if("JA".contains(menneske)){
+                spillere[antallRoboter] = new Spiller(navn, terreng.hentStart(), terminal);
+            }
+
+            for(int i = 0; i < antallRoboter; i++){
+                spillere[i] = new Spiller("R0b0" + i, terreng.hentStart(), robot);
+
+            }
+        }
+        // veivalg terreng
+        else{
+
+            if("JA".contains(menneske)){
+                spillere[antallRoboter] = new VeivalgSpiller(navn, terreng.hentStart(), terminal);
+            }
+
+            for(int i = 0; i < antallRoboter; i++){
+                spillere[i] = new VeivalgSpiller("R0b0" + i, terreng.hentStart(), robot);
+            }
+
+        }
+
+
+
         // START SPILLET
-        Spiller poeng = Spill.startSpill(terreng, spiller);
-        resultat = poeng.toString();
+        Spiller[] poeng = Spill.startSpill(terreng, spillere);
+
+
+        // SPILL FERDIG
+        // sorter spillerene etter hoyeste score
+        Arrays.sort(poeng);
+
+        // lagre sortert liste i static streng saa GUI kan hente
+        for(int i = 0; i < poeng.length; i++){
+            resultat = resultat + "\n" + (i+1) + " : " + poeng[i].toString();
+        }
 
         // lag traad som venter 5 sek foer den avslutter GUI
         Thread avslutt = new Thread( new StoppGUI() );
