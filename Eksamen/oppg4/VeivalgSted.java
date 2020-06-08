@@ -5,7 +5,7 @@ class VeivalgSted extends Sted{
 
     // INSTANSVARIABLER
     VeivalgSted[] utganger = new VeivalgSted[3];
-    String[] retninger = {"rett frem", "hoyre", "venstre"};
+    String[] retninger = {"rett frem", "til hoyre", "til venstre"};
 
 
     // KONSTRUKTOER

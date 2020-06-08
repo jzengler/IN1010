@@ -76,9 +76,9 @@ public class Spillkontroll extends Application{
         Spiller poeng = Spill.startSpill(terreng, spiller);
         resultat = poeng.toString();
 
-        // lag traad som venter 5 sek foer den avslutter GUI
-        Thread avslutt = new Thread( new StoppGUI() );
-        avslutt.start();
+        // // lag traad som venter 5 sek foer den avslutter GUI
+        // Thread avslutt = new Thread( new StoppGUI() );
+        // avslutt.start();
 
         launch(args);
     }

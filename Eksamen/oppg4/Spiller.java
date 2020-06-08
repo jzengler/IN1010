@@ -99,8 +99,6 @@ class Spiller implements Comparable<Spiller>{
         }
 
 
-        grensesnitt.giStatus(hentNavn() + "Trasker videre...");
-
         her = her.gaaVidere();
 
     }
