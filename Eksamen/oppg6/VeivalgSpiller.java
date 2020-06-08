@@ -14,7 +14,7 @@ class VeivalgSpiller extends Spiller{
 
 
     // METODER
-    public void nyttTrekk(){
+    synchronized public void nyttTrekk(){
         super.nyttTrekk();
 
         int indeks = grensesnitt.beOmKommando("\nHvilken vei vil du gaa?", ((VeivalgSted)her).hentVeier());

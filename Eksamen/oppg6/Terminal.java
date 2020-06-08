@@ -10,7 +10,6 @@ class Terminal implements Brukergrensesnitt{
     Scanner skanner;
     Random r = new Random();
 
-
     // KONSTRUKTOER
     Terminal(Scanner skanner){
         this.skanner = skanner;
@@ -40,6 +39,7 @@ class Terminal implements Brukergrensesnitt{
 
         // skriv ut svar-hint bare hvis sekk eller kisten
         if(!spoersmaal.contains("vei")){
+
             System.out.println("Ja [J], nei [N]?");
 
             // valider svaret fra bruker

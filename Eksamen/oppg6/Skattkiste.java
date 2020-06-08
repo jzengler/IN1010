@@ -11,7 +11,6 @@ class Skattkiste{
     public ArrayList<Gjenstand> innhold = new ArrayList<Gjenstand>();
     Random r = new Random();
 
-
     // KONSTRUKTOER
     Skattkiste(Gjenstand[] gjenstander){
 
@@ -29,9 +28,10 @@ class Skattkiste{
 
     // METODER
 
-    public Gjenstand[] hentInnhold(){
+    synchronized public Gjenstand[] hentInnhold(){
 
         Gjenstand[] ting = new Gjenstand[ innhold.size() ];
+
 
         for(int i = 0; i < ting.length; i++){
             ting[i] = innhold.get(i);
@@ -41,7 +41,7 @@ class Skattkiste{
 
     }
 
-    public int leggNedGjenstand(Gjenstand gjenstand){
+    synchronized public int leggNedGjenstand(Gjenstand gjenstand){
 
         // hent verdien til gjenstanden
         int verdi = gjenstand.hentVerdi();
@@ -59,13 +59,13 @@ class Skattkiste{
     //  lagde opprinnelig en overload av metoden
     //  men jeg syntes det ble mer oversiktlig aa benytte random
     //  foer kallet paa denne andre steder
-    public Gjenstand taUtGjenstand(int indeks){
+    synchronized public Gjenstand taUtGjenstand(int indeks){
 
         // fjern gjenstand og returner
         return innhold.remove(indeks);
     }
 
-    public int antallGjenstander(){
+    synchronized public int antallGjenstander(){
         return innhold.size();
     }
 

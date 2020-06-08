@@ -108,18 +108,35 @@ public class Spillkontroll extends Application{
         }
 
 
-
         // START SPILLET
-        Spiller[] poeng = Spill.startSpill(terreng, spillere);
+        System.out.println("\nDen magiske reisen begynner...\n");
+
+        Thread[] traader = new Thread[spillere.length];
+
+        for(int i = 0; i < spillere.length; i++){
+            traader[i] = new Thread( new Spill(terreng, spillere[i]) );
+            traader[i].start();
+        }
+
+        for( int i = 0; i < spillere.length; i++){
+            try{
+                traader[i].join();
+            }
+            catch(InterruptedException e){
+
+            }
+        }
+
+        System.out.println("\nDen magiske reisen er over\n");
 
 
         // SPILL FERDIG
         // sorter spillerene etter hoyeste score
-        Arrays.sort(poeng);
+        Arrays.sort(spillere);
 
         // lagre sortert liste i static streng saa GUI kan hente
-        for(int i = 0; i < poeng.length; i++){
-            resultat = resultat + "\n" + (i+1) + " : " + poeng[i].toString();
+        for(int i = 0; i < spillere.length; i++){
+            resultat = resultat + "\n" + (i+1) + " : " + spillere[i].toString();
         }
 
         // lag traad som venter 5 sek foer den avslutter GUI

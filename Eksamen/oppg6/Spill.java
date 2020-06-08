@@ -1,18 +1,28 @@
-public class Spill{
+public class Spill implements Runnable{
+
+    Terreng terreng;
+    Spiller spiller;
 
 
-    public static Spiller startSpill(Terreng terreng, Spiller spiller){
+
+    Spill(Terreng terreng, Spiller spiller){
+        this.terreng = terreng;
+        this.spiller = spiller;
+    }
+
+
+    public void startSpill(){
 
         // start spillet
-        System.out.println("\nDen magiske reisen begynner...\n");
 
         for(int i = 0; i < Spillkontroll.ANTALL_TREKK; i++){
             spiller.nyttTrekk();
         }
 
-
-
-        System.out.println("\nDen magiske reisen er over\n");
-        return spiller;
     }
+
+    public void run(){
+        startSpill();
+    }
+
 }

@@ -26,13 +26,13 @@ class Spiller implements Comparable<Spiller>{
     // METODER
     public void nyttTrekk(){
 
+
         // oppdater spillet med sted og funn av kiste
         grensesnitt.giStatus("\n" + hentNavn() + her.toString());
         grensesnitt.giStatus(hentNavn() + "Du fant en kiste!");
 
         // hent kisten fra stedet
         Skattkiste kiste = her.hentSkattkiste();
-
 
         // her kunne det vaert bedre aa ta fra kisten foerst for aa unngaa at spiller kan faa tilbake samme gjenstand
 
@@ -51,6 +51,7 @@ class Spiller implements Comparable<Spiller>{
             // ta ut av sekk, legg ned i kiste
             // svaket her er at spiller legger noe i kisten foerst, det er derfor mulig aa faa samme gjenstand tilbake
             int verdi = kiste.leggNedGjenstand( solgt );
+
             // oek formuen fra salget
             formue += verdi;
 
@@ -66,6 +67,7 @@ class Spiller implements Comparable<Spiller>{
 
 
         // ta noe?
+
         // opprett string array for innholdet
         String[] ta = innhold(kiste);
 
@@ -100,7 +102,6 @@ class Spiller implements Comparable<Spiller>{
 
 
         her = her.gaaVidere();
-
     }
 
     public int hentFormue(){
