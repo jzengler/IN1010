@@ -46,9 +46,9 @@ class Skattkiste{
         // hent verdien til gjenstanden
         int verdi = gjenstand.hentVerdi();
 
-        // legg gjenstanden i kisten uten aa endre verdi
-        // legges bakerst
-        innhold.add(gjenstand);
+        // Henter en ny tilfeldig gjenstand istedefor aa legge spillerens gjenstand ned.
+        // Fikset problemet at spilleren ofte fikk tilbake samme gjenstand
+        innhold.add(Terreng.gjenstander[ r.nextInt(Terreng.gjenstander.length)]);
 
         // returner verdi [100%,110%]
         return verdi + r.nextInt(verdi + 1)/10;
