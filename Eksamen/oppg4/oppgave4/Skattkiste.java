@@ -46,7 +46,8 @@ class Skattkiste{
         // hent verdien til gjenstanden
         int verdi = gjenstand.hentVerdi();
 
-        // legger ned gjenstand i kiste/ryggsekk
+        // legg gjenstanden i kisten uten aa endre verdi
+        // legges bakerst
         innhold.add(gjenstand);
 
         // returner verdi [100%,110%]
