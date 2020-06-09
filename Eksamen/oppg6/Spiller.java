@@ -24,9 +24,12 @@ class Spiller implements Comparable<Spiller>{
     }
 
     // METODER
-    synchronized public void nyttTrekk(){
+    public void nyttTrekk(){
 
-
+        // blokker de andre traadene fra aa bruke System.out
+        // tilnaermet 0 parallelitet da hele metoden er dekket fordi det er mye utskrift
+        // i tillegg er metodene til kiste syncronized
+        synchronized(System.out){
         // oppdater spillet med sted og funn av kiste
         grensesnitt.giStatus("\n" + hentNavn() + her.toString());
         grensesnitt.giStatus(hentNavn() + "Du fant en kiste!");
@@ -100,7 +103,7 @@ class Spiller implements Comparable<Spiller>{
             grensesnitt.giStatus(hentNavn() + "Oi, det var vist ikke plass i sekken... Du maa nok selge noe");
         }
 
-
+    }
         her = her.gaaVidere();
     }
 

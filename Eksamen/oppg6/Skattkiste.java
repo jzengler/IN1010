@@ -28,6 +28,7 @@ class Skattkiste{
 
     // METODER
 
+    // brukte synchronized for aa hindre flere traader samtidig i objektet
     synchronized public Gjenstand[] hentInnhold(){
 
         Gjenstand[] ting = new Gjenstand[ innhold.size() ];

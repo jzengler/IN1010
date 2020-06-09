@@ -59,7 +59,7 @@ class Terminal implements Brukergrensesnitt{
             }
 
         }
-
+        }
 
 
         //  sjekk om sekken/kisten tom, returner hvis den er det
@@ -109,9 +109,7 @@ class Terminal implements Brukergrensesnitt{
         else{
             valg = r.nextInt(antall);
         }
-
         // ikke en pen loesning, returner -1 som er out of bounds hvis bruker velger nei
         return valg;
-    }
 
 }

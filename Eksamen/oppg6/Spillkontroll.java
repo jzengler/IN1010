@@ -39,8 +39,7 @@ public class Spillkontroll extends Application{
         // terreng valg
         System.out.println("Vil du spille med enkelt terreng? [J]");
         String enkelt = skan.next().toUpperCase();
-        
-        skan.close();
+
 
         //  Oppsett enkelt eller flere veivalg
         Terreng terreng;
@@ -58,19 +57,24 @@ public class Spillkontroll extends Application{
         Spiller[] spillere;
         String navn = "";
         Brukergrensesnitt terminal = null;
+        int antallSpillere = antallRoboter;
 
         if("JA".contains(menneske)){
 
-            spillere = new Spiller[antallRoboter + 1];
+            // hvis terminal-spiller lag arrayet en plass stoerre
+            antallSpillere++;
+            spillere = new Spiller[antallSpillere];
 
             // spiller navn
             System.out.println("Skriv inn et navn");
             navn = skan.next().toUpperCase();
 
+            // isntansier brukergrensesnitt for terminal-spiller
             terminal = new Terminal( new Scanner(System.in) );
 
         }
         else{
+            // bare roboter
             spillere = new Spiller[antallRoboter];
         }
 
@@ -84,9 +88,12 @@ public class Spillkontroll extends Application{
         if("JA".contains(enkelt)){
 
             if("JA".contains(menneske)){
+                // terminal-spiller legges bakerst i arrayet
+                // antallRoboter vil vaere antallspillere - 1 uansett
                 spillere[antallRoboter] = new Spiller(navn, terreng.hentStart(), terminal);
             }
 
+            // opprett alle robotene med et dummy-navn
             for(int i = 0; i < antallRoboter; i++){
                 spillere[i] = new Spiller("R0b0" + i, terreng.hentStart(), robot);
 
@@ -109,14 +116,17 @@ public class Spillkontroll extends Application{
         // START SPILLET
         System.out.println("\nDen magiske reisen begynner...\n");
 
+
         Thread[] traader = new Thread[spillere.length];
 
-        for(int i = 0; i < spillere.length; i++){
+        // starter en traad per spiller
+        for(int i = 0; i < antallSpillere; i++){
             traader[i] = new Thread( new Spill(terreng, spillere[i]) );
             traader[i].start();
         }
 
-        for( int i = 0; i < spillere.length; i++){
+        // venter paa at alle traadene skal bli ferdig
+        for( int i = 0; i < antallSpillere; i++){
             try{
                 traader[i].join();
             }
@@ -124,7 +134,8 @@ public class Spillkontroll extends Application{
 
             }
         }
-
+        // lukker scanner etter spillet er ferdig
+        skan.close();
         System.out.println("\nDen magiske reisen er over\n");
 
 
@@ -132,8 +143,13 @@ public class Spillkontroll extends Application{
         // sorter spillerene etter hoyeste score
         Arrays.sort(spillere);
 
+        // tar kun med inntil 10 spillere
+        if(antallSpillere > 10){
+            antallSpillere = 10;
+        }
+
         // lagre sortert liste i static streng saa GUI kan hente
-        for(int i = 0; i < spillere.length; i++){
+        for(int i = 0; i < 10; i++){
             resultat = resultat + "\n" + (i+1) + " : " + spillere[i].toString();
         }
 
@@ -181,11 +197,12 @@ public class Spillkontroll extends Application{
         StoppBehandler stopp = new StoppBehandler();
         btnStopp.setOnAction(stopp);
 
-        // tekstfelt for antall
-        Text txtTittel = new Text("Resultat");
+        // tekstfelt for tittel
+        Text txtTittel = new Text("Topp 10 spillere");
         txtTittel.setY(20);
         txtTittel.setX(20);
 
+        // tekstfelt for resutlatliste
         Text txtListe = new Text(resultat);
         txtListe.setY(50);
         txtListe.setX(20);
