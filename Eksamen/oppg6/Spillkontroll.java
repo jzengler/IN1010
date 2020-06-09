@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 import javafx.application.Application;
@@ -11,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.text.*;
-import javafx.stage.FileChooser;
 import javafx.application.Platform;
 
 public class Spillkontroll extends Application{
@@ -42,7 +39,8 @@ public class Spillkontroll extends Application{
         // terreng valg
         System.out.println("Vil du spille med enkelt terreng? [J]");
         String enkelt = skan.next().toUpperCase();
-
+        
+        skan.close();
 
         //  Oppsett enkelt eller flere veivalg
         Terreng terreng;

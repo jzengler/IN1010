@@ -1,5 +1,3 @@
-import java.util.Random;
-
 class VeivalgTerreng extends Terreng{
     // KLASSEVARIABLER
 

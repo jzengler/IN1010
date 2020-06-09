@@ -24,7 +24,7 @@ class Spiller implements Comparable<Spiller>{
     }
 
     // METODER
-    public void nyttTrekk(){
+    synchronized public void nyttTrekk(){
 
 
         // oppdater spillet med sted og funn av kiste

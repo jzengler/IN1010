@@ -22,7 +22,10 @@ public class Spill implements Runnable{
     }
 
     public void run(){
+
+        synchronized(spiller.her){
         startSpill();
+        }
     }
 
 }

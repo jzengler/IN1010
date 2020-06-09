@@ -32,7 +32,6 @@ class Skattkiste{
 
         Gjenstand[] ting = new Gjenstand[ innhold.size() ];
 
-
         for(int i = 0; i < ting.length; i++){
             ting[i] = innhold.get(i);
         }

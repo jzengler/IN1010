@@ -28,7 +28,7 @@ class Terminal implements Brukergrensesnitt{
     // jeg syntes det ga mening at spilleren kan velge gjenstand fra sekken, men blir tildelt tilfeldig fra kisten.
     // Da ble spillet litt mer interaktivt.
     // er ikke helt fornoyd med at metoden returnerer -1 for aa fange opp naar spiller svarer nei eller Skattkiste er tom
-    public int beOmKommando(String spoersmaal, String[] alternativer){
+    synchronized public int beOmKommando(String spoersmaal, String[] alternativer){
 
         // dummy-verdier for aa kjore looper
         String taUt = "";
