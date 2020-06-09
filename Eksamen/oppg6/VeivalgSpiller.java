@@ -14,14 +14,18 @@ class VeivalgSpiller extends Spiller{
 
 
     // METODER
-    synchronized public void nyttTrekk(){
+    public void nyttTrekk(){
         super.nyttTrekk();
 
-        int indeks = grensesnitt.beOmKommando("\nHvilken vei vil du gaa?", ((VeivalgSted)her).hentVeier());
+        int indeks;
+
+        synchronized(System.out){
+
+            indeks = grensesnitt.beOmKommando("\nHvilken vei vil du gaa?", ((VeivalgSted)her).hentVeier());
 
 
-        grensesnitt.giStatus(hentNavn() + "Trasker " + ((VeivalgSted)her).hentVeier()[indeks] );
-
+            grensesnitt.giStatus(hentNavn() + "Trasker " + ((VeivalgSted)her).hentVeier()[indeks] );
+        }
 
         // overskriver "her" som kjoeres i slutten av super.nyttTrekk()
         // kanskje ikke en veldig god maate aa gjoere det paa?

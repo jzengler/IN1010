@@ -1,3 +1,15 @@
+// Det stod i oppgavetekste at kun en spiller skal skrive ut av gangen
+// Jeg tolket det slik at alle utskrifter en spiller utfoerer i ett trekk skal vaere uavbrutt
+// Det gir oversiktlig kjoering men foerte ogsaa til at jeg valgte aa blokke traader for System.layout
+// Ettersom det er mange utskrifter stroedd ut i hele metoden nyttTrekk ble det i praksis blokking for hele metoden
+// Det hindrer hvertfall at gjenstander blir tatt ut/lagt ned i kiste av andre traader mellom der spilleren utfoerer salg/ta handling
+
+// jeg klarte ikke aa finne en loesning som ivaretok
+//1: atomiske handlinger paa Skattkist
+//2: at ikke en traad kalte en metode i Skattkiste mellom to metodekall fra en annen.
+// I et slikt tilfelle kunne for eksempel to traader kalt på taUtGjenstand rett etterhverandre. Da kunne kisten blitt toemt foer noe ble tatt ut igjen.
+//3: spillerens trekk ble skrevet ut sammenhengende
+
 class Spiller implements Comparable<Spiller>{
     // KLASSEVARIABLER
 
@@ -28,7 +40,7 @@ class Spiller implements Comparable<Spiller>{
 
         // blokker de andre traadene fra aa bruke System.out
         // tilnaermet 0 parallelitet da hele metoden er dekket fordi det er mye utskrift
-        // i tillegg er metodene til kiste syncronized
+        // i tillegg er metodene i klassen kiste syncronized
         synchronized(System.out){
         // oppdater spillet med sted og funn av kiste
         grensesnitt.giStatus("\n" + hentNavn() + her.toString());

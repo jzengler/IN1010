@@ -121,7 +121,7 @@ public class Spillkontroll extends Application{
 
         // starter en traad per spiller
         for(int i = 0; i < antallSpillere; i++){
-            traader[i] = new Thread( new Spill(terreng, spillere[i]) );
+            traader[i] = new Thread(new Spill(terreng, spillere[i]));
             traader[i].start();
         }
 
@@ -149,7 +149,7 @@ public class Spillkontroll extends Application{
         }
 
         // lagre sortert liste i static streng saa GUI kan hente
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < antallSpillere; i++){
             resultat = resultat + "\n" + (i+1) + " : " + spillere[i].toString();
         }
 
